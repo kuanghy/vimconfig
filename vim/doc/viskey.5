@@ -1,0 +1,143 @@
+\"========================================================================
+\"     FileName: viskey.5
+\"       Author: Huoty
+\"        Email: loveqing2013@foxmail.com
+\"    TencentQQ: 1346632121
+\"     HomePage: http://loveqing2013.blog.163.com/
+\"      Version: 2.1.2
+\"   CreateDate: 2013-10-25 22:34:56
+\"      History: 
+\"  Description: 说明 linux 下 vim 中快捷键的使用。
+\"========================================================================
+
+.TH VISKEY 5 "2013-09-28" "create 1.0" "My HelpFile"
+
+.SH NAME
+\fBviskey\fR \- Shortcut key of vim, 说明 linux vim 快捷键的使用。
+
+.SH SYNOPSIS
+.B viskey
+\-WITHOUT OPTION, 无参数，直接使用viskey即可。
+.br
+\-\-\fBPS:\fR shortcut ['ʃɔrt,kʌt]  n. 捷径；被切短的东西
+
+.SH DESCRIPTION
+This manual page document is from Huoty. \fBviskey\fR is a Help Document of linux vim. 这个man手册是用于查看linux下vim快捷键的使用。
+.sp
+.B \-<F1>：查看帮助文档
+.sp
+.B \-<F2>：生成/更新 tags 文件；Ctrl+F2 删除 tags 文件
+.sp
+.B \-<F3>：快速注释
+.sp
+.B \-<F4>：取消注释
+.sp
+.B \-<F5>：快速编译C\C++文件
+.sp
+.B \-<F6>：快速运行C\C++文件
+.sp
+.B \-<F7>：Without
+.sp
+.B \-<F8>：快速添加作者信息
+.sp
+.B \-<F9>：激活/取消vim的粘贴模式
+.sp
+.B \-<F10>：打开菜单
+.sp
+.B \-<F11>：全屏对话框
+.sp
+.B \-<F12>：开关Guake Terminal
+.sp
+.B \-<SPACE>：--空格键：开关折叠
+.sp
+.B \-Tab：自动补全
+
+.SH VIM 插件使用说明
+描述vim中安装的一些插件的打开方式，注：m-命令模式，d-底行命令模式，c-插入模式
+.sp
+nt（m） \-\-打开目录树 
+.br
+wm（m） \-\-打开文件浏览器
+.br
+A(d)    \-\-快速切换头文件和源文件
+.br
+ctrl+] （c）  \-\-跳到定义处，ctags插件应用
+.br
+ctrl+t （c）  \-\-返回，ctags插件应用
+.br
+
+.B 运行终端命令：(m)
+.br
+    ConqueTerm       <command>:  在当前的窗口打开<command>
+.br
+    ConqueTermSplit  <command>:  横向分割一个窗口之后打开<command>
+.br
+    ConqueTermVSplit <command>:  竖向分割一个窗口之后打开<command>
+.br
+    ConqueTermTab    <command>:  先建一个tab页之后打开<command>
+.br
+
+.B 添加各类注释：(m)
+.br
+    Dox           \-\-添加函数注释
+.br
+    DoxLic        \-\-添加许可协议
+.br
+    DoxAuthor     \-\-添加作者信息
+
+.SH VIM 快捷操作命令
+描述vim的一些快捷命令的操作，注：m-命令模式，d-底行命令模式，c-插入模式
+.sp
+cw (m)       \-\-修改一个单词
+.br
+%s/<已存在字符串>/<要替换的字符串>/g (d)    \-\-全局替换
+.br
+gg=G （m）   \-\-整理错乱的代码
+.br
+[D (m)       \-\-光标放到宏上，可以查看宏的定义
+.br
+set list (d) \-\-显示不可视字符
+.br
+\\ee (m)      \-\-快捷打开配置文件.vimrc，这是一个快捷功能键映射
+.br
+% (m)         \-\-跳转到匹配的括号
+.br
+
+.B 块操作：
+.br
+v (m)         \-\-按字符选择
+.br
+V (m)         \-\-按行选择
+.br
+Ctrl + v (m)  \-\-选择矩形字符块
+.br
+
+.B 块替换：
+.br
+(1) Ctrl + v 选择要替换的块
+.br
+(2) 接着按c键，然后输入替换内容
+.br
+(3) 最后按esc键，完成替换
+
+.SH COPYRIGHT
+\fBVISKEY\fR is Copyright Huoty private, but it is free and common, you can use it angwhere.
+
+.SH SEE ALSO
+这个文档是一个中英文结合的文档，另外有一个英文版的文档，你可以通过发送电子邮件而得到，邮箱：\fIloveqing2013@foxmail.com\fR 。
+
+.SH REPORTING BUGS
+Because of the different personal habits, you can according to need to change this file, so as to perfect the function of it.
+.br
+这个文件是根据Gvim的配置文件_vimrc/.vimrc中各种功能的快捷键映射而写成的，由于个人习惯的不同，你可以根据需要更改此文件，以完善它的功能。若果你有更好的想法，可以向邮箱：\fIloveqing2013@foxmail.com\fR 发送邮件。
+
+.SH AUTHOR
+Written by Huoty.
+
+.SH "[版本维护人]"
+.B huoty <loveqing2013@foxmail.com>
+.SH "[版本最新更新]"
+.B 2014.07.15
+.SH "***HUOTY沃的***"
+.SS "source 齐正修源，致用致远"
+.I http://loveqing2013.blog.163.com
