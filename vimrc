@@ -3,11 +3,12 @@
 "       Author: Huoty
 "        Email: sudohuoty@163.com
 "     HomePage: http://konghy.blog.163.com/
-"      Version: 6.8.1
+"      Version: 6.9.1
 "   CreateDate: 2012-12-16 20:19:03
-"      History: huoty  2014-02-28  6.6.1  添加了一些插件 oldV6.3.1
+"      History: huoty  2014-02-28  6.6.1  添加了一些插件
 "               huoty  2014-11-29  6.7.1  添加DoxygenToolkit插件
 "               huoty  2014-11-30  6.8.1  添加ConqueTerm插件
+"               huoty  2014-12-06  6.9.1  添加括号和引号自动跳转功能
 "  Description: Linux 下 vim 配置文件。
 "============================================================================
 
@@ -51,14 +52,13 @@ endif " has("autocmd")
 
 "********************************************************************
 " 允许鼠标的使用 ----------------------------------------------------
-if(g:iswindows==1) "允许鼠标的使用
-                   "防止linux终端下无法拷贝
+if(g:iswindows==1) 
     if has('mouse')
         set mouse=a
         set selection=exclusive
-      set selectmode=mouse,key
-  endif
-  au GUIEnter * simalt ~x
+        set selectmode=mouse,key
+    endif
+    au GUIEnter * simalt ~x
 endif
 "------------------------------------------------- end --------------
 
@@ -242,6 +242,21 @@ autocmd BufNewFile *.java  0r  ~/.vim/skeleton/skeleton.java
 autocmd BufNewFile Makefile  0r  ~/.vim/skeleton/Makefile
 "------------------------------------------------ end ---------------------
 
+
+"==========================================================================
+"输入括号和引号自动跳到中间
+"==========================================================================
+imap () ()<ESC>i
+imap [] []<ESC>i
+imap {} {}<ESC>i
+imap "" ""<ESC>i
+imap '' ''<ESC>i
+"imap { {}<ESC>i<CR><ESC>V<O
+
+"set smartindent
+"set tabstop=4
+"set shiftwidth=4
+"set expandtab
 
 "==========================================================================
 "新建python文件时，自动添加文件头
