@@ -239,6 +239,7 @@ autocmd BufNewFile *.c     0r  ~/.vim/skeleton/skeleton.c
 autocmd BufNewFile *.cpp   0r  ~/.vim/skeleton/skeleton.cpp
 autocmd BufNewFile *.h     0r  ~/.vim/skeleton/skeleton.h
 autocmd BufNewFile *.java  0r  ~/.vim/skeleton/skeleton.java
+autocmd BufNewFile *.html  0r  ~/.vim/skeleton/skeleton.html
 autocmd BufNewFile Makefile  0r  ~/.vim/skeleton/Makefile
 "------------------------------------------------ end ---------------------
 
@@ -251,6 +252,7 @@ imap [] []<ESC>i
 imap {} {}<ESC>i
 imap "" ""<ESC>i
 imap '' ''<ESC>i
+imap <> <><ESC>i
 "imap { {}<ESC>i<CR><ESC>V<O
 
 "set smartindent
@@ -281,6 +283,27 @@ function HeaderPython()
 endf
 
 autocmd bufnewfile *.py call HeaderPython()
+"------------------------------------------------ end ---------------------
+
+
+"==========================================================================
+"新建PHP文件时，自动添加文件头
+"==========================================================================
+function HeaderPHP()
+    call setline(1, "<?php  # Script -- " . expand("%:t"))
+    call append(1, "")
+    call append(2, "/* Author @ Huoty")
+    call append(3, " *   Date @ " . strftime('%Y-%m-%d %T', localtime()))
+    call append(4, " *  Brief @ ")
+    call append(5, " */")
+    call append(6, "")
+    call append(7, "?>")
+    normal G
+    normal O
+    normal O
+endf
+
+autocmd bufnewfile *.php call HeaderPHP()
 "------------------------------------------------ end ---------------------
 
 
