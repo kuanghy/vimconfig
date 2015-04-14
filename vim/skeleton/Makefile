@@ -12,14 +12,13 @@
 # Make Target:
 # ------------
 # The Makefile provides the following targets to make:
-#   $ make           compile and link
-#   $ make NODEP=yes compile and link without generating dependencies
-#   $ make objs      compile only (no linking)
-#   $ make tags      create tags for Emacs editor
-#   $ make ctags     create ctags for VI editor
-#   $ make clean     clean objects and the executable file
-#   $ make distclean clean objects, the executable and dependencies
-#   $ make help      get the usage of the makefile
+#   $ make           Compile and link
+#   $ make clean     Clean objects and the executable file
+#   $ make install   Install the application
+#   $ make remove    Remove the application
+#   $ make backup    Backup the project
+#   $ make help      Get the usage of the makefile
+#   $ make show      Show variables (for debug use only)
 # 
 #============================================================
 
@@ -56,8 +55,8 @@ LIBDIR = $(DESTDIR)/usr/lib
 INCDIR = $(DESTDIR)/usr/include
 
 # 项目备份目录和备份压缩包名
-BPDIR = backup_tmp
-TARNAME = $(PRONAME)_`date +%Y``date +%m``date +%d`-`date +%H``date +%M``date +%S`_bak
+BAKDIR = backup_tmp
+TARNAME = $(PRONAME)_v$(VERSION)_`date +%Y``date +%m``date +%d``date +%H``date +%M``date +%S`_bak
 
 
 #### 构建项目:
@@ -99,19 +98,61 @@ remove:
 #### 项目备份:
 ####---------------------------------------------------------
 
-bakup:
+backup:
 	@clear
 	@echo "Starting backup program:"
-	-mkdir ~/backup/$(BPDIR)
-	-cp -a ./* ~/backup/$(BPDIR)
-	-mv ~/backup/$(BPDIR) ./
-	@tar czvf $(TARNAME).tar.gz $(BPDIR)
+	-mkdir ~/backup/$(BAKDIR)
+	-cp -a ./* ~/backup/$(BAKDIR)
+	-mv ~/backup/$(BAKDIR) ./
+	@tar czvf $(TARNAME).tar.gz $(BAKDIR)
 	-mv ./*.tar.gz ~/backup
-	-rm -rf ./$(BPDIR)
+	-rm -rf ./$(BAKDIR)
+
+
+#### Show help
+####---------------------------------------------------------
+
+help:
+	@echo 'Generic Makefile for C/C++ Programs.'
+	@echo "Copyright (C) 2014 - `date +%Y` Huoty <sudohuoty@163.com>"
+	@echo
+	@echo 'Usage: make [TARGET]'
+	@echo 'TARGETS:'
+	@echo '  all       (=make) Compile and link.'
+	@echo '  clean     Clean objects and the executable file.'
+	@echo '  install   Install the application.'
+	@echo '  remove    Remove the application.'
+	@echo '  backup    Backup the project.'
+	@echo '  show      Show variables (for debug use only).'
+	@echo '  help      Print this message.'
+	@echo
+	@echo 'Report bugs to <sudohuoty AT 163 DOT com>.'
+
+
+
+#### Show variables (for debug use only.)
+####---------------------------------------------------------
+
+show:
+	@echo "PRONAME : " $(PRONAME)
+	@echo "VERSION : " $(VERSION)
+	@echo "PROGRAM : " $(PROGRAM)
+	@echo "SRCS    : " $(SRC)
+	@echo "OBJS    : " $(OBJ)
+	@echo "DESTDIR : " $(DESTDIR)
+	@echo "BINDIR  : " $(BINDIR)
+	@echo "LIBDIR  : " $(LIBDIR)
+	@echo "INCDIR  : " $(INCDIR)
+	@echo "BAKDIR  : " $(BAKDIR)
+	@echo "complile option: " $(CC) $(W) $(O) $(CFLAGS) $(CPPFLAGS) $(DEBUG) $(LIBS)
+	@echo "backup archive name: " $(TARNAME)".tar.gz"
 
 
 #### 定义伪目标
 ####---------------------------------------------------------
 
-.PHONY: clean install remove bakup
+.PHONY: all clean install remove bakup help show
 
+
+## End of the Makefile ##  Made by Huoty  ## All rights reserved ##
+###################################################################
