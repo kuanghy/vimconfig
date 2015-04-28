@@ -3,12 +3,13 @@
 "       Author: Huoty
 "        Email: sudohuoty@163.com
 "     HomePage: http://konghy.blog.163.com/
-"      Version: 6.9.1
+"      Version: 6.9.2
 "   CreateDate: 2012-12-16 20:19:03
 "      History: huoty  2014-02-28  6.6.1  添加了一些插件
 "               huoty  2014-11-29  6.7.1  添加DoxygenToolkit插件
 "               huoty  2014-11-30  6.8.1  添加ConqueTerm插件
 "               huoty  2014-12-06  6.9.1  添加括号和引号自动跳转功能
+"               huoty  2015-04-28  6.9.2  添加 powerline 插件
 "  Description: Linux 下 vim 配置文件。
 "============================================================================
 
@@ -386,6 +387,15 @@ let g:doxygen_enhanced_color=1
 map <F3> <leader>cc  
 map <F4> <leader>cu
 "------------------------------------------------ end ---------------------
+
+
+"======================= VIM-POWERLINE插件 ===============================
+" 状态栏插件配置    
+"==========================================================================
+set laststatus=2
+set t_Co=8
+let g:Powerline_symbols='unicode'
+set encoding=utf8
 
 
 "================================================================

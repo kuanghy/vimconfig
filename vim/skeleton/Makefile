@@ -75,10 +75,9 @@ $(PROGRAM): $(OBJ)
 ####---------------------------------------------------------
 
 clean:
+	@clear
 	@echo "Clean files:"
-	@echo -n "  "
 	-rm $(PROGRAM)
-	@echo -n "  "
 	-rm *.o
 
 
@@ -100,6 +99,7 @@ remove:
 ####---------------------------------------------------------
 
 backup:
+	@clear
 	@echo "Starting backup program:"
 	-mkdir ~/backup/$(BAKDIR)
 	-cp -a ./* ~/backup/$(BAKDIR)
