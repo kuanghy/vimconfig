@@ -2,14 +2,14 @@
 "     FileName: .vimrc
 "       Author: Huoty
 "        Email: sudohuoty@163.com
-"     HomePage: http://konghy.blog.163.com/
-"      Version: 6.9.2
+"     HomePage: http://kuanghy.github.io/  http://konghy.blog.163.com/
+"      Version: 6.9.9
 "   CreateDate: 2012-12-16 20:19:03
 "      History: huoty  2014-02-28  6.6.1  添加了一些插件
 "               huoty  2014-11-29  6.7.1  添加DoxygenToolkit插件
 "               huoty  2014-11-30  6.8.1  添加ConqueTerm插件
 "               huoty  2014-12-06  6.9.1  添加括号和引号自动跳转功能
-"               huoty  2015-04-28  6.9.2  添加 powerline 插件
+"               huoty  2015-07-16  6.9.9  更改状态栏并添加LargFile等插件
 "  Description: Linux 下 vim 配置文件。
 "============================================================================
 
@@ -396,6 +396,11 @@ set laststatus=2
 set t_Co=8
 let g:Powerline_symbols='unicode'
 set encoding=utf8
+
+"===================3======= LargFile插件 =================================
+" 用于打开大文件    
+"==========================================================================
+let g:LargeFile=5 "设置打开最大文件的标准为5M
 
 
 "================================================================
