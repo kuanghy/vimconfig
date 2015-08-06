@@ -2,14 +2,15 @@
 "     FileName: .vimrc
 "       Author: Huoty
 "        Email: sudohuoty@163.com
-"     HomePage: http://kuanghy.github.io/  http://konghy.blog.163.com/
-"      Version: 6.9.9
+"     HomePage: http://konghy.blog.163.com/
+"      Version: 7.0.0
 "   CreateDate: 2012-12-16 20:19:03
 "      History: huoty  2014-02-28  6.6.1  添加了一些插件
 "               huoty  2014-11-29  6.7.1  添加DoxygenToolkit插件
 "               huoty  2014-11-30  6.8.1  添加ConqueTerm插件
 "               huoty  2014-12-06  6.9.1  添加括号和引号自动跳转功能
 "               huoty  2015-07-16  6.9.9  更改状态栏并添加LargFile等插件
+"               huoty  2015-08-06  7.0.0  添加Python语法检测插件pyflakes
 "  Description: Linux 下 vim 配置文件。
 "============================================================================
 
@@ -148,9 +149,9 @@ syntax on "打开高亮
 set number "显示行号
 "set history=50  "命令的历史条数
 set nobackup
-filetype plugin indent on  "为特定文件类型载入相关缩进文件
-filetype plugin on         "载入文件类型插件
 filetype on                "侦测文件类型插件
+filetype plugin on         "载入文件类型插件
+filetype plugin indent on  "为特定文件类型载入相关缩进文件
 set wildmenu 
 "使用Tab 自动补全的时候,将补全内容使用一个漂亮的单行菜单形式显示出来
 
