@@ -2,8 +2,8 @@
 "     FileName: .vimrc
 "       Author: Huoty
 "        Email: sudohuoty@163.com
-"     HomePage: http://konghy.blog.163.com/
-"      Version: 7.0.0
+"     HomePage: http://www.konghy.cn/
+"      Version: 7.0.1
 "   CreateDate: 2012-12-16 20:19:03
 "      History: huoty  2014-02-28  6.6.1  添加了一些插件
 "               huoty  2014-11-29  6.7.1  添加DoxygenToolkit插件
@@ -11,13 +11,10 @@
 "               huoty  2014-12-06  6.9.1  添加括号和引号自动跳转功能
 "               huoty  2015-07-16  6.9.9  更改状态栏并添加LargFile等插件
 "               huoty  2015-08-06  7.0.0  添加Python语法检测插件pyflakes
-"  Description: Linux 下 vim 配置文件。
+"               huoty  2016-07-07  7.0.1  新建 shell 脚本时载入一个模板
+"  Description: Linux 下 vim 用户自定义配置文件。
 "============================================================================
 
-
-"====================== VIM 用户自定义配置 ==========================
-"            * 以下内容为自己在linux下的vim配置文件 *
-"====================================================================
 
 "********************************************************************
 " 判断当前系统类型 --------------------------------------------------
@@ -261,6 +258,24 @@ imap <> <><ESC>i
 "set tabstop=4
 "set shiftwidth=4
 "set expandtab
+
+
+"==========================================================================
+"新建 shell 脚本文件时，自动添加文件头
+"==========================================================================
+function HeaderShell()
+    call setline(1, "#! /bin/bash")
+    call append(1, "")
+    call append(2, "# Filename: " . expand('%:t') . " " . strftime('%Y-%m-%d', localtime()))
+    call append(3, "# Author: Huoty <sudohuoty@gmail.com>")
+    call append(4, "# Script starts from here:")
+    normal G
+    normal o
+    normal o
+endf
+
+autocmd bufnewfile *.sh call HeaderShell()
+
 
 "==========================================================================
 "新建python文件时，自动添加文件头
