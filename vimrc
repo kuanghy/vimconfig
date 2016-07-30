@@ -357,11 +357,15 @@ set tags=/usr/include/tags
 "Tag List 显示函数列表
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
+
 "winmanager 文件浏览器
 let g:winManagerWindowLayout='FileExplorer|TagList'
+let g:winManagerWidth = 30  " 设置宽度
 nmap wm :WMToggle<cr>
+
 "NERDtree 显示目录树
 nmap nt :NERDTree<cr>
+
 
 "======================== AuthorInfo插件 ==================================
 "快速添加作者信息
