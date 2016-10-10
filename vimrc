@@ -150,7 +150,7 @@ filetype on                "侦测文件类型插件
 filetype plugin on         "载入文件类型插件
 filetype plugin indent on  "为特定文件类型载入相关缩进文件
 set wildmenu 
-"使用Tab 自动补全的时候,将补全内容使用一个漂亮的单行菜单形式显示出来
+"使用 Tab 自动补全的时候,将补全内容使用一个漂亮的单行菜单形式显示出来
 
 
 "修改自动补全列表背景颜色======================================
@@ -285,10 +285,10 @@ function HeaderPython()
     call append(1, "# -*- coding: utf-8 -*-")
     call append(2, "")
     call append(3, "# *************************************************************")
-    call append(4, "#     Filename @  " . expand("%:t"))
-    call append(5, "#       Author @  Huoty")
-    call append(6, "#  Create date @  " . strftime('%Y-%m-%d %T', localtime()))
-    call append(7, "#  Description @  ")
+    call append(4, "#  Copyright (c) Huoty - All rights reserved")
+    call append(5, "# ") 
+    call append(6, "#      Author: Huoty <sudohuoty@gmail.com>")
+    call append(7, "#  CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
     call append(8, "# *************************************************************")
     call append(9, "")
     call append(10, "")

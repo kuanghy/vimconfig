@@ -1,0 +1,261 @@
+"============================================================================
+"     FileName: .vimrc
+"       Author: Huoty
+"        Email: sudohuoty@gmail.com
+"     HomePage: http://www.konghy.cn/
+"      Version: 1.0.0
+"   CreateDate: 2016-10-10 10:08:06
+"      History: huoty  2016-10-10  1.0.0  第一个版本
+"  Description: Linux 下 vim 用户自定义配置文件。
+"============================================================================
+
+" 基本设置
+set nocompatible  "去掉 vi 的一致性
+set number        "显示行号
+syntax on         "开启语法高亮
+set scrolloff=3   "光标移动到 Buffer 的顶部和底部时保持 3 行距离
+set viminfo+=!    "保存全局变量
+set confirm       "处理未保存或者只读文件时, 给出提示
+set autoread      "当文件在外部被修改，自动更新该文件
+set showcmd       "标尺的右边显示未完成的命令
+set history=500   "保留历史记录
+set nobackup      "禁止自动备份
+set showmode      "显示文本处理模式
+set autochdir     "将当前编辑文件的路径设置为当前路径
+set fileformat=unix      "设置以 unix 的格式保存文件
+set whichwrap+=<,>,h,l   "允许 backspace 和光标键跨越行边界
+
+" 高亮行和列
+set cursorline   "突出显示当前行"
+"set cursorcolumn  "突出显示当前列"
+
+" 设置字体
+set guifont=Monaco:h12:cANSI
+set guifontwide=幼圆:h12:cGB2312
+
+" 设置主题
+colorscheme ron
+set background=dark
+
+" 隐藏滚动条
+set guioptions-=r
+set guioptions-=L
+set guioptions-=b
+
+" 启用鼠标
+"set mouse=a
+"set selection=exclusive
+"set selectmode=mouse,key
+
+" 记录上一次打开文件的位置
+autocmd BufReadPost *
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \ exe "normal g`\"" |
+    \ endif
+
+" 侦测文件类型插件
+filetype on                "侦测文件类型插件
+filetype plugin on         "载入文件类型插件
+filetype plugin indent on  "为特定文件类型载入相关缩进文件
+
+" 缩进与匹配
+set autoindent    "自动缩进
+set smartindent   "智能缩进
+set showmatch     "显示匹配的括号
+set matchtime=5   "匹配括号高亮的时间
+set backspace=2   "使回格键（backspace）正常处理 indent, eol, start 等
+
+" Tab 设置
+set tabstop=4     "设置 Tab 长度
+set shiftwidth=4  "缩进尺寸为 4 个空格
+set softtabstop=4
+set smarttab      "只按一下 Backspace 就删除 4 个空格
+set expandtab     "编辑时将所有 Tab 替换为空格
+
+" 编码设置
+set fileencodings=utf-8,gb2312,gbk,gb18030,ucs-bom,cp936,big5,euc-jp,euc-kr,latin1
+set fileencoding=utf-8
+set termencoding=utf-8
+
+" 搜索设置
+set incsearch    "实时匹配
+set hlsearch     "高亮搜索项
+set ignorecase   "忽略大小写
+
+" 文本换行设置
+set nowrap      "设置不自动换行
+set linebreak   "英文单词在换行时不被截断
+set iskeyword+=_,$,@,%,#,-    "带有如下符号的单词不要被换行分割
+autocmd FileType text setlocal textwidth=80   "纯文本时自动换行
+
+" 语言设置
+set langmenu=zh_CN.UTF-8
+set helplang=cn
+
+" 状态栏设置
+set t_Co=8
+let g:Powerline_symbols='unicode'
+set encoding=utf8
+set laststatus=2
+set statusline=%F\ %y\ %r%m%*%=[%{&fenc!=''?&fenc:&enc}][Line:%l/%L,Column:%c][%p%%]
+
+" 自动补全
+set wildmode=list:full  "可用来改动补全时采用的方式
+set wildmenu   "使用 Tab 自动补全的时用菜单列出内容
+
+" 输入括号和引号自动跳到中间
+imap () ()<ESC>i
+imap [] []<ESC>i
+imap {} {}<ESC>i
+imap "" ""<ESC>i
+imap '' ''<ESC>i
+imap <> <><ESC>
+
+" 高亮多余的空白符
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t\+\|\t\+\zs \+/
+
+
+"==========================================================================
+" 快捷键映射
+"==========================================================================
+"切换到粘贴模式, 避免粘贴文本错位
+set pastetoggle=<F9>
+
+"启用代码折叠用空格键来开关折叠
+set foldenable            "打开代码折叠
+set foldmethod=syntax     "选择代码折叠类型
+set foldlevel=100         "禁止自动折叠
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc':'zo')<CR>
+                          "用空格键来开关折叠
+
+"------------------------------------------------ end ---------------------
+
+
+"==========================================================================
+" 新建 Shell 脚本文件时，自动添加文件头
+"==========================================================================
+function HeaderShell()
+  call setline(1, "#! /bin/bash")
+  call append(1, "")
+  call append(2, "# Filename: " . expand('%:t') . " " . strftime('%Y-%m-%d', localtime()))
+  call append(3, "# Author: Huoty <sudohuoty@gmail.com>")
+  call append(4, "# Script starts from here:")
+  normal G
+  normal o
+  normal o
+endf
+
+autocmd bufnewfile *.sh call HeaderShell()
+"------------------------------------------------ end ---------------------
+
+
+"==========================================================================
+" 新建 Python 文件时，自动添加文件头
+"==========================================================================
+function HeaderPython()
+    call setline(1, "#! /usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    call append(2, "")
+    call append(3, "# *************************************************************")
+    call append(4, "#  Copyright (c) Huoty - All rights reserved")
+    call append(5, "# ")
+    call append(6, "#      Author: Huoty <sudohuoty@gmail.com>")
+    call append(7, "#  CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
+    call append(8, "# *************************************************************")
+    call append(9, "")
+    call append(10, "")
+    call append(11, "")
+    call append(12, "# Script starts from here")
+    normal G
+    normal o
+    normal o
+endf
+
+autocmd bufnewfile *.py call HeaderPython()
+"------------------------------------------------ end ---------------------
+
+
+"==========================================================================
+" 新建 PHP 文件时，自动添加文件头
+"==========================================================================
+function HeaderPHP()
+    call setline(1, "<?php  # Script -- " . expand("%:t"))
+    call append(1, "")
+    call append(2, "/* Author @ Huoty")
+    call append(3, " *   Date @ " . strftime('%Y-%m-%d %T', localtime()))
+    call append(4, " *  Brief @ ")
+    call append(5, " */")
+    call append(6, "")
+    call append(7, "?>")
+    normal G
+    normal O
+    normal O
+endf
+
+autocmd bufnewfile *.php call HeaderPHP()
+"------------------------------------------------ end ---------------------
+
+
+"========================= 插件管理 =======================================
+" Vundle 是 Vim bundle 的简称, 是一个 Vim 插件管理器.
+"
+" 	:PluginList       - 列出所有已配置的插件
+" 	:PluginInstall    - 安装插件,追加 `!` 用以更新或使用 :PluginUpdate
+" 	:PluginSearch foo - 搜索 foo ; 追加 `!` 清除本地缓存
+" 	:PluginClean      - 清除未使用插件,需要确认; 追加 `!` 自动批准移除未使用插件
+"==========================================================================
+filetype off  "必须
+"设置包括 vundle 和初始化相关的 runtime path
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'  "让vundle管理插件版本, 必须
+
+"插件列表:
+Plugin 'Yggdroot/indentLine'           "显示缩进对齐线
+Plugin 'vim-scripts/LargeFile'         "用于打开大文件
+Plugin 'scrooloose/nerdcommenter'      "快速注释
+Plugin 'vim-scripts/AutoComplPop'      "自动提示补全
+Plugin 'jiangmiao/auto-pairs'          "括号和引号自动补全
+Plugin 'kien/rainbow_parentheses.vim'  "括号着色
+Plugin 'airblade/vim-gitgutter'        "Git Diff 状态
+Plugin 'terryma/vim-multiple-cursors'  "多重选取
+
+call vundle#end()
+filetype plugin indent on
+
+
+"========================= 插件配置 =======================================
+" 对相应的插件进行配置
+"==========================================================================
+"LargeFile 插件:
+let g:LargeFile=5  "设置打开最大文件的标准为5M
+
+"NERD_commenter 插件:
+map <F3> <leader>cc  "注释
+map <F4> <leader>cu  "取消注释
+
+"IndentLine 插件:
+let g:indentLine_color_term = 2  "设置对齐线颜色
+
+"Multiple Cursors 插件:
+let g:multi_cursor_next_key='<C-n>'    "选中一个
+let g:multi_cursor_prev_key='<C-p>'    "放弃一个, 回到上一个
+let g:multi_cursor_skip_key='<C-x>'    "跳过当前选中, 选中下一个
+let g:multi_cursor_quit_key='<Esc>'    "退出选择
+
+"Rainbow Parentheses 插件:
+let g:rbpt_colorpairs = [ ['brown', 'RoyalBlue3'],
+	\ ['Darkblue', 'SeaGreen3'], ['darkgray', 'DarkOrchid3'],
+	\ ['darkgreen', 'firebrick3'], ['darkcyan', 'RoyalBlue3'],
+	\ ['darkred', 'SeaGreen3'], ['darkmagenta', 'DarkOrchid3'],
+	\ ['brown', 'firebrick3'], ['gray', 'RoyalBlue3'],
+	\ ['black', 'SeaGreen3'], ['darkmagenta', 'DarkOrchid3'],
+	\ ['Darkblue', 'firebrick3'], ['darkgreen', 'RoyalBlue3'],
+	\ ['darkcyan', 'SeaGreen3'], ['darkred', 'DarkOrchid3'],['red', 'firebrick3'] ]
+let g:rbpt_max = 16
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces

@@ -14,3 +14,14 @@ Linux 下 vim 配置
 > cp vim/doc/viskey.5 /usr/share/man/zh_CN/man5/
 
 
+## 精简版安装
+
+安装插件管理器 [Vundle](https://github.com/VundleVim/Vundle.vim):
+
+> $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+修改配置:
+
+> cp vimrc-mini ~/.vimrc
+
+打开 vim, 命令模式输出 `:PluginList` 安装插件
