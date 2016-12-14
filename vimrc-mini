@@ -23,7 +23,7 @@ set nobackup      "禁止自动备份
 set showmode      "显示文本处理模式
 set autochdir     "将当前编辑文件的路径设置为当前路径
 set fileformat=unix      "设置以 unix 的格式保存文件
-set whichwrap+=<,>,h,l   "允许 backspace 和光标键跨越行边界
+"set whichwrap+=<,>,h,l   "允许 backspace 和光标键跨越行边界
 
 " 高亮行和列
 set cursorline   "突出显示当前行"
@@ -159,7 +159,7 @@ function HeaderPython()
     call append(2, "")
     call append(3, "# *************************************************************")
     call append(4, "#  Copyright (c) Huoty - All rights reserved")
-    call append(5, "# ")
+    call append(5, "#")
     call append(6, "#      Author: Huoty <sudohuoty@gmail.com>")
     call append(7, "#  CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
     call append(8, "# *************************************************************")
@@ -217,7 +217,7 @@ Plugin 'Yggdroot/indentLine'           "显示缩进对齐线
 Plugin 'vim-scripts/LargeFile'         "用于打开大文件
 Plugin 'scrooloose/nerdcommenter'      "快速注释
 Plugin 'vim-scripts/AutoComplPop'      "自动提示补全
-Plugin 'jiangmiao/auto-pairs'          "括号和引号自动补全
+"Plugin 'jiangmiao/auto-pairs'          "括号和引号自动补全
 Plugin 'kien/rainbow_parentheses.vim'  "括号着色
 Plugin 'airblade/vim-gitgutter'        "Git Diff 状态
 Plugin 'terryma/vim-multiple-cursors'  "多重选取
