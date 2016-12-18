@@ -1,0 +1,126 @@
+"============================================================================
+"     FileName: .vimrc.plugin
+"       Author: Huoty
+"        Email: sudohuoty@gmail.com
+"     HomePage: http://www.konghy.cn/
+"      Version: 1.0.0
+"   CreateDate: 2016-12-18 24:08:06
+"      History: huoty  2016-10-10  1.0.0  第一个版本
+"  Description: Vim 插件配置文件
+"============================================================================
+
+"========================= 窗口管理插件 ===================================
+" 窗口管理工具
+"==========================================================================
+"Tag List 显示函数列表
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+
+"winmanager 文件浏览器
+let g:winManagerWindowLayout='FileExplorer|TagList'
+let g:winManagerWidth = 30  " 设置宽度
+nmap wm :WMToggle<cr>
+
+"NERDtree 显示目录树
+let NERDTreeChDirMode=1
+let NERDTreeShowBookmarks=1  "显示书签
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']  "设置忽略文件类型
+let NERDTreeWinSize=25  "窗口大小
+nmap nt :NERDTree<cr>
+
+
+"======================== AuthorInfo 插件 ==================================
+" 快速添加作者信息
+"==========================================================================
+let g:vimrc_author='Huoty'
+let g:vimrc_email='sudohuoty@163.com'
+let g:vimrc_homepage='http://konghy.blog.163.com/'
+" 映射到快捷键<F8>:
+nmap <F8> :AuthorInfoDetect<cr>
+"------------------------------------------------ end ---------------------
+
+
+"====================== DoxygenToolkit 插件 ================================
+" 自动添加各类注释
+"==========================================================================
+" Usage: Dox       添加函数注释
+"        DoxLic    添加许可注释
+"        DoxAuthor 文件头注释
+
+let g:DoxygenToolkit_authorName="Huoty, sudohuoty@163.com"
+let g:DoxygenToolkit_briefTag_pre="@brief "
+let g:DoxygenToolkit_paramTag_pre="@param "
+let g:DoxygenToolkit_returnTag="@returns "
+"let g:DoxygenToolkit_blockHeader="---------------------------------------------------"
+"let g:DoxygenToolkit_blockFooter="---------------------------------------------------"
+let g:DoxygenToolkit_licenseTag="GPL"
+
+let s:licenseTag = "Copyright(C)\<enter>"
+let s:licenseTag = s:licenseTag . "For free\<enter>"
+let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
+let g:DoxygenToolkit_licenseTag = s:licenseTag
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
+
+
+"======================= NERD_commenter插件 ===============================
+" NERD_commenter 设定快捷键:  其中F3为"注释"，F4为""取消注释"
+"==========================================================================
+map <F3> <leader>cc
+map <F4> <leader>cu
+"------------------------------------------------ end ---------------------
+
+
+"======================= VIM-POWERLINE插件 ===============================
+" 状态栏插件配置
+"==========================================================================
+set laststatus=2
+set t_Co=8
+let g:Powerline_symbols='unicode'
+set encoding=utf8
+
+
+"===================3======= LargFile插件 =================================
+" 用于打开大文件
+"==========================================================================
+let g:LargeFile=5  "设置打开最大文件的标准为5M
+
+
+"================================================================
+" indentLine 插件配置
+"================================================================
+" 用于显示对齐线，与 indent_guides 在显示方式上不同，根据自己喜好选择了
+" 在终端上会有屏幕刷新的问题，这个问题能解决有更好了
+" 开启 / 关闭对齐线
+nmap <leader>il :IndentLinesToggle<CR>
+
+" 设置终端对齐线颜色，如果不喜欢可以将其注释掉采用默认颜色
+let g:indentLine_color_term = 2
+
+" 设置 GUI 对齐线颜色，如果不喜欢可以将其注释掉采用默认颜色
+" let g:indentLine_color_gui = '#A4E57E'
+
+"================================================================
+" Multiple Cursors 插件
+"================================================================
+let g:multi_cursor_next_key='<C-n>'    "选中一个
+let g:multi_cursor_prev_key='<C-p>'    "放弃一个, 回到上一个
+let g:multi_cursor_skip_key='<C-x>'    "跳过当前选中, 选中下一个
+let g:multi_cursor_quit_key='<Esc>'    "退出选择
+
+"================================================================
+" Rainbow Parentheses 插件
+"================================================================
+let g:rbpt_colorpairs = [ ['brown', 'RoyalBlue3'],
+	\ ['Darkblue', 'SeaGreen3'], ['darkgray', 'DarkOrchid3'],
+	\ ['darkgreen', 'firebrick3'], ['darkcyan', 'RoyalBlue3'],
+	\ ['darkred', 'SeaGreen3'], ['darkmagenta', 'DarkOrchid3'],
+	\ ['brown', 'firebrick3'], ['gray', 'RoyalBlue3'],
+	\ ['black', 'SeaGreen3'], ['darkmagenta', 'DarkOrchid3'],
+	\ ['Darkblue', 'firebrick3'], ['darkgreen', 'RoyalBlue3'],
+	\ ['darkcyan', 'SeaGreen3'], ['darkred', 'DarkOrchid3'],['red', 'firebrick3'] ]
+let g:rbpt_max = 16
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces

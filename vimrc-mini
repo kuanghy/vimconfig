@@ -10,9 +10,9 @@
 "============================================================================
 
 " 基本设置
+syntax on         "开启语法高亮
 set nocompatible  "去掉 vi 的一致性
 set number        "显示行号
-syntax on         "开启语法高亮
 set scrolloff=3   "光标移动到 Buffer 的顶部和底部时保持 3 行距离
 set viminfo+=!    "保存全局变量
 set confirm       "处理未保存或者只读文件时, 给出提示
@@ -22,7 +22,7 @@ set history=500   "保留历史记录
 set nobackup      "禁止自动备份
 set showmode      "显示文本处理模式
 set autochdir     "将当前编辑文件的路径设置为当前路径
-set fileformat=unix      "设置以 unix 的格式保存文件
+set fileformat=unix       "设置以 unix 的格式保存文件
 "set whichwrap+=<,>,h,l   "允许 backspace 和光标键跨越行边界
 
 " 高亮行和列
@@ -58,7 +58,7 @@ filetype on                "侦测文件类型插件
 filetype plugin on         "载入文件类型插件
 filetype plugin indent on  "为特定文件类型载入相关缩进文件
 
-" 缩进与匹配
+" 缩进与括号匹配
 set autoindent    "自动缩进
 set smartindent   "智能缩进
 set showmatch     "显示匹配的括号

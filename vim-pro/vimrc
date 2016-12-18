@@ -1,0 +1,440 @@
+"============================================================================
+"     FileName: .vimrc
+"       Author: Huoty
+"        Email: sudohuoty@gmail.com
+"     HomePage: http://www.konghy.cn/
+"      Version: 7.1.0
+"   CreateDate: 2012-12-16 20:19:03
+"      History: huoty  2014-02-28  6.6.1  添加了一些插件
+"               huoty  2014-11-29  6.7.1  添加 DoxygenToolkit 插件
+"               huoty  2014-11-30  6.8.1  添加 ConqueTerm 插件
+"               huoty  2014-12-06  6.9.1  添加括号和引号自动跳转功能
+"               huoty  2015-07-16  6.9.9  更改状态栏并添加 LargFile 等插件
+"               huoty  2015-08-06  7.0.0  添加 Python 语法检测插件 pyflakes
+"               huoty  2016-07-07  7.0.1  新建 shell 脚本时载入一个模板
+"               huoty  2016-12-07  7.1.0  整理配置, 采用插件管理工具管理插件
+"  Description: Vim 用户自定义配置文件
+"============================================================================
+
+" 基本设置
+syntax on        "打开高亮
+set number       "显示行号
+set nobackup     "禁止自动备份
+set showmode     "显示文本处理模式
+set showcmd      "标尺的右边显示未完成的命令
+set viminfo+=!   "保存全局变量
+set confirm      "处理未保存或者只读文件时，给出提示
+set autochdir    "将当前编辑文件的路径设置为当前路径
+set scrolloff=3  "光标移动到 Buffer 的顶部和底部时保持 3 行距离
+set autoread     "当文件在外部被修改，自动更新该文件
+set fileformat=unix  "设置以 unix 的格式保存文件
+"set whichwrap+=<,>,h,l   "允许 backspace 和光标键跨越行边界
+
+" 不要 vim 模仿 vi 模式，建议设置，否则会有很多不兼容的问题
+set nocompatible
+
+" 载入文件时侦测文件类型
+filetype on                "侦测文件类型插件
+filetype plugin on         "载入文件类型插件
+filetype plugin indent on  "为特定文件类型载入相关缩进文件
+
+" 设置主题
+colorscheme ron
+set background=dark
+
+" 设置字体
+set guifont=Monaco:h12:cANSI
+set guifontwide=幼圆:h12:cGB2312
+
+" 语言设置
+set langmenu=zh_CN.UTF-8
+set helplang=cn
+
+" 隐藏滚动条
+set guioptions-=r
+set guioptions-=L
+set guioptions-=b
+
+" 启用鼠标
+"set mouse=a
+"set selection=exclusive
+"set selectmode=mouse,key
+
+" 记录上一次打开文件的位置
+autocmd BufReadPost *
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \ exe "normal g`\"" |
+    \ endif
+
+" 在编辑过程中，在右下角显示光标位置的状态行
+set ruler
+set rulerformat=%35(%2*%<%f%=\ %m%r\ %3l\,%c\ \ \ \ %p%%%)
+
+" 状态栏设置
+set t_Co=8
+let g:Powerline_symbols='unicode'
+set encoding=utf8
+set laststatus=2
+set statusline=%F\ %y\ %r%m%*%=[%{&fenc!=''?&fenc:&enc}][Line:%l/%L,Column:%c][%p%%]
+
+" 高亮当前行和列
+set cursorline
+"set cursorcolumn
+
+" 缩进与括号匹配
+set autoindent    "自动缩进
+set smartindent   "智能缩进
+set showmatch     "显示匹配的括号
+set matchtime=5   "匹配括号高亮的时间
+set backspace=2   "使回格键（backspace）正常处理 indent, eol, start 等
+
+" Tab 设置
+set tabstop=4     "设置 Tab 长度
+set shiftwidth=4  "缩进尺寸为 4 个空格
+set softtabstop=4
+set smarttab      "只按一下 Backspace 就删除 4 个空格
+set expandtab     "编辑时将所有 Tab 替换为空格
+
+" 自动补全
+set wildmode=list:full  "可用来改动补全时采用的方式
+set wildmenu   "使用 Tab 自动补全的时用菜单列出内容
+
+" 状态栏设置
+set t_Co=8
+let g:Powerline_symbols='unicode'
+set encoding=utf8
+set laststatus=2
+set statusline=%F\ %y\ %r%m%*%=[%{&fenc!=''?&fenc:&enc}][Line:%l/%L,Column:%c][%p%%]
+
+" 搜索设置
+set incsearch    "实时匹配
+set hlsearch     "高亮搜索项
+set ignorecase   "忽略大小写
+
+" 文本换行设置
+set nowrap      "设置不自动换行
+set linebreak   "英文单词在换行时不被截断
+set iskeyword+=_,$,@,%,#,-    "带有如下符号的单词不要被换行分割
+autocmd FileType text setlocal textwidth=80   "纯文本时自动换行
+
+" 与 windows 共享剪贴板
+set clipboard+=unnamed
+
+" 高亮多余的空白符
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t\+\|\t\+\zs \+/
+
+
+" 快捷打开并编辑 vimrc 文件的键盘绑定====================================
+" 命令模式输入\ee打开.vimrc文件
+map <silent> <leader>ee :e $HOME/.vimrc<cr>
+autocmd! bufwritepost *.vimrc source $HOME/.vimrc
+
+
+" 置粘贴模式========================================================
+" 这样粘贴过来的程序代码就不会错位了,但是开启之后快速补全不能用
+" 映射快捷键 F9 来开关粘贴模式：
+set pastetoggle=<F9>
+
+
+" 修改自动补全列表背景颜色============================================
+highlight Pmenu    term=bold cterm=bold ctermfg=8
+highlight PmenuSel term=bold cterm=bold ctermfg=8
+
+
+" 启用代码折叠用空格键来开关折叠=======================================
+set foldenable            " 打开代码折叠
+set foldmethod=syntax     " 选择代码折叠类型
+set foldlevel=100         " 禁止自动折叠
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc':'zo')<CR>
+                          "用空格键来开关折叠
+
+
+"======================================================================
+"          * 解决打开文件中文乱码的问题 *
+"          * * * * * * * * * * * * * * **
+" <1>encoding: Vim 内部使用的字符编码方式，包括 Vim 的 buffer (缓冲区)、
+"   菜单文本、消息文本等。用户手册上建议只在 .vimrc 中改变它的值，事实
+"   上似乎也只有在 .vimrc 中改变它的值才有意义。
+
+" <2>fileencoding: Vim 中当前编辑的文件的字符编码方式，Vim 保存文件时也
+"   会将文件保存为这种字符编码方式 (不管是否新文件都如此)。
+
+" <3>fileencodings: Vim 启动时会按照它所列出的字符编码方式逐一探测即将打
+"   开的文件的字符编码方式，并且将 fileencoding 设置为最终探测到的字符
+"   编码方式。因此最好将 Unicode 编码方式放到这个列表的最前面，将拉丁语
+"   系编码方式 latin1 放到最后面。
+"======================================================================
+set fileencodings=utf-8,gb2312,gbk,gb18030,ucs-bom,cp936,big5,euc-jp,euc-kr,latin1
+set fileencoding=utf-8
+set termencoding=utf-8
+"------------------------------------------------ end -----------------
+
+
+"==========================================================================
+"开始编辑一个文件时读入一个骨架（样板）文件：
+"==========================================================================
+autocmd BufNewFile *.c     0r  ~/.vim/skeleton/skeleton.c
+autocmd BufNewFile *.cpp   0r  ~/.vim/skeleton/skeleton.cpp
+autocmd BufNewFile *.h     0r  ~/.vim/skeleton/skeleton.h
+autocmd BufNewFile *.java  0r  ~/.vim/skeleton/skeleton.java
+autocmd BufNewFile *.html  0r  ~/.vim/skeleton/skeleton.html
+autocmd BufNewFile Makefile  0r  ~/.vim/skeleton/Makefile
+"------------------------------------------------ end ---------------------
+
+
+"==========================================================================
+"输入括号和引号自动跳到中间
+"==========================================================================
+imap () ()<ESC>i
+imap [] []<ESC>i
+imap {} {}<ESC>i
+imap "" ""<ESC>i
+imap '' ''<ESC>i
+imap <> <><ESC>i
+"imap { {}<ESC>i<CR><ESC>V<O
+
+"set smartindent
+"set tabstop=4
+"set shiftwidth=4
+"set expandtab
+
+
+"==========================================================================
+"新建 shell 脚本文件时，自动添加文件头
+"==========================================================================
+function HeaderShell()
+    call setline(1, "#! /bin/bash")
+    call append(1, "")
+    call append(2, "# Filename: " . expand('%:t') . " " . strftime('%Y-%m-%d', localtime()))
+    call append(3, "# Author: Huoty <sudohuoty@gmail.com>")
+    call append(4, "# Script starts from here:")
+    normal G
+    normal o
+    normal o
+endf
+
+autocmd bufnewfile *.sh call HeaderShell()
+
+
+"==========================================================================
+"新建 python 文件时，自动添加文件头
+"==========================================================================
+function HeaderPython()
+    call setline(1, "#! /usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    call append(2, "")
+    call append(3, "# *************************************************************")
+    call append(4, "#  Copyright (c) Huoty - All rights reserved")
+    call append(5, "#")
+    call append(6, "#      Author: Huoty <sudohuoty@gmail.com>")
+    call append(7, "#  CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
+    call append(8, "# *************************************************************")
+    call append(9, "")
+    call append(10, "")
+    call append(11, "")
+    call append(12, "# Script starts from here")
+    normal G
+    normal o
+    normal o
+endf
+
+autocmd bufnewfile *.py call HeaderPython()
+"------------------------------------------------ end ---------------------
+
+
+"==========================================================================
+"新建PHP文件时，自动添加文件头
+"==========================================================================
+function HeaderPHP()
+    call setline(1, "<?php  # Script -- " . expand("%:t"))
+    call append(1, "")
+    call append(2, "/* Author @ Huoty")
+    call append(3, " *   Date @ " . strftime('%Y-%m-%d %T', localtime()))
+    call append(4, " *  Brief @ ")
+    call append(5, " */")
+    call append(6, "")
+    call append(7, "?>")
+    normal G
+    normal O
+    normal O
+endf
+
+autocmd bufnewfile *.php call HeaderPHP()
+"------------------------------------------------ end ---------------------
+
+
+"======================== ctags 配置 =======================================
+" 设置 tags 文件的生成、更新和删除，以映射快捷键
+"==========================================================================
+"F2 生成/更新 tags 文件
+set tags=tags;
+set autochdir
+function! UpdateTagsFile()
+    silent !ctags -R --fields=+ianS --extra=+q
+endfunction
+nmap <F2> :call UpdateTagsFile()<CR>
+
+"Ctrl + F2删除tags文件
+function! DeleteTagsFile()
+    "Linux 下的删除方法
+    "silent !rm tags
+    "Windows 下的删除方法
+    silent !del /F /Q tags
+endfunction
+nmap <C-F2> :call DeleteTagsFile()<CR>
+"退出 Vim 之前删除 tags 文件
+"au VimLeavePre * call DeleteTagsFile()
+
+"加入搜索路径：
+set tags=/usr/include/tags
+"------------------------------------------------ end ---------------------
+
+
+"========================= 插件管理 =======================================
+" Vundle 是 Vim bundle 的简称, 是一个 Vim 插件管理器.
+"
+" 	:PluginList       - 列出所有已配置的插件
+" 	:PluginInstall    - 安装插件,追加 `!` 用以更新或使用 :PluginUpdate
+" 	:PluginSearch foo - 搜索 foo ; 追加 `!` 清除本地缓存
+" 	:PluginClean      - 清除未使用插件,需要确认; 追加 `!` 自动批准移除未使用插件
+"==========================================================================
+filetype off  "必须
+"设置包括 vundle 和初始化相关的 runtime path
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'  "让 vundle 管理插件版本, 必须
+
+"插件列表:
+Plugin 'vim-scripts/a.vim'
+Plugin 'vim-scripts/c.vim'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'vim-scripts/winmanager'              "文件浏览
+Plugin 'scrooloose/nerdtree'                 "显示目录树
+Plugin 'vim-scripts/AuthorInfo'              "快速添加作者信息
+Plugin 'vim-scripts/LargeFile'               "用于打开大文件
+Plugin 'vim-scripts/AutoComplPop'            "自动提示补全
+Plugin 'vim-scripts/echofunc.vim'            "显示函数原型
+Plugin 'vim-scripts/DoxygenToolkit.vim'      "自动添加各类注释
+Plugin 'Lokaltog/vim-powerline'              "美化状态栏
+Plugin 'Yggdroot/indentLine'                 "显示缩进对齐线
+Plugin 'scrooloose/nerdcommenter'            "快速注释
+Plugin 'kien/rainbow_parentheses.vim'        "括号着色
+Plugin 'kevinw/pyflakes-vim'                 "Python 语法检查
+Plugin 'airblade/vim-gitgutter'              "Git Diff 状态
+Plugin 'terryma/vim-multiple-cursors'        "多重选取
+Plugin 'Valloric/vim-operator-highlight'     "高亮运算符
+Plugin 'ctrlpvim/ctrlp.vim'                  "在工程中快速定位某个文件
+Plugin 'dyng/ctrlsf.vim'                     "在工程中全局搜索某个特定的字符
+"Plugin 'jiangmiao/auto-pairs'               "括号和引号自动补全
+
+call vundle#end()
+filetype plugin indent on
+
+"最后如果插件配置文件存在则加载插件配置文件
+if filereadable(expand("~/.vimrc.plugin"))
+    source ~/.vimrc.plugin
+endif
+"------------------------------------------------ end ---------------------
+
+
+" 高亮显示普通 text 文件======================================================
+" 需要 txt.vim 语法高亮脚本
+" 放在插件管理之前会有冲突
+au BufRead,BufNewFile * setfiletype text
+
+
+"==========================================================================
+"                ## C和C++的编译和运行 ##
+"
+" 快捷键映射：
+"             <F5>：编译
+"             <F6>：运行
+"
+"==========================================================================
+func! CompileGcc()
+    exec "w"
+    let compilecmd="!gcc "
+    let compileflag="-o %< "
+    if search("mpi\.h") != 0
+        let compilecmd = "!mpicc "
+    endif
+    if search("glut\.h") != 0
+        let compileflag .= " -lglut -lGLU -lGL "
+    endif
+    if search("cv\.h") != 0
+        let compileflag .= " -lcv -lhighgui -lcvaux "
+    endif
+    if search("omp\.h") != 0
+        let compileflag .= " -fopenmp "
+    endif
+    if search("math\.h") != 0
+        let compileflag .= " -lm "
+    endif
+    exec compilecmd." % ".compileflag
+endfunc
+func! CompileGpp()
+    exec "w"
+    let compilecmd="!g++ "
+    let compileflag="-o %< "
+    if search("mpi\.h") != 0
+        let compilecmd = "!mpic++ "
+    endif
+    if search("glut\.h") != 0
+        let compileflag .= " -lglut -lGLU -lGL "
+    endif
+    if search("cv\.h") != 0
+        let compileflag .= " -lcv -lhighgui -lcvaux "
+    endif
+    if search("omp\.h") != 0
+        let compileflag .= " -fopenmp "
+    endif
+    if search("math\.h") != 0
+        let compileflag .= " -lm "
+    endif
+    exec compilecmd." % ".compileflag
+endfunc
+
+func! RunPython()
+        exec "!python %"
+endfunc
+func! CompileJava()
+    exec "!javac %"
+endfunc
+
+
+func! CompileCode()
+        exec "w"
+        if &filetype == "cpp"
+                exec "call CompileGpp()"
+        elseif &filetype == "c"
+                exec "call CompileGcc()"
+        elseif &filetype == "python"
+                exec "call RunPython()"
+        elseif &filetype == "java"
+                exec "call CompileJava()"
+        endif
+endfunc
+
+func! RunResult()
+        exec "w"
+        if search("mpi\.h") != 0
+            exec "!mpirun -np 4 ./%<"
+        elseif &filetype == "cpp"
+            exec "! ./%<"
+        elseif &filetype == "c"
+            exec "! ./%<"
+        elseif &filetype == "python"
+            exec "call RunPython"
+        elseif &filetype == "java"
+            exec "!java %<"
+        endif
+endfunc
+
+map <F5> :call CompileCode()<CR>
+imap <F5> <ESC>:call CompileCode()<CR>
+vmap <F5> <ESC>:call CompileCode()<CR>
+
+map <F6> :call RunResult()<CR>
+"------------------------------------------------ end ---------------------
