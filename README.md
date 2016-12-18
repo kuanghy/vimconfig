@@ -34,4 +34,4 @@ Pro 版本精简了一些配置和插件，并用插件管理器 Vundle 管理�
 >
 > make
 
-如何需要手动安装，可以参考 [Makfile](./vim-pro/Makefile) 文件的内容
+如何需要手动安装，可以参考 [Makefile](./vim-pro/Makefile) 文件的内容
