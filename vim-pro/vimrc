@@ -21,7 +21,6 @@ syntax on        "打开高亮
 set number       "显示行号
 set nobackup     "禁止自动备份
 set showmode     "显示文本处理模式
-set showcmd      "标尺的右边显示未完成的命令
 set viminfo+=!   "保存全局变量
 set confirm      "处理未保存或者只读文件时，给出提示
 set autochdir    "将当前编辑文件的路径设置为当前路径
@@ -32,6 +31,9 @@ set fileformat=unix  "设置以 unix 的格式保存文件
 
 " 不要 vim 模仿 vi 模式，建议设置，否则会有很多不兼容的问题
 set nocompatible
+
+" 标尺的右边显示未完成的命令
+set showcmd
 
 " 载入文件时侦测文件类型
 filetype on                "侦测文件类型插件
@@ -99,20 +101,13 @@ set expandtab     "编辑时将所有 Tab 替换为空格
 set wildmode=list:full  "可用来改动补全时采用的方式
 set wildmenu   "使用 Tab 自动补全的时用菜单列出内容
 
-" 状态栏设置
-set t_Co=8
-let g:Powerline_symbols='unicode'
-set encoding=utf8
-set laststatus=2
-set statusline=%F\ %y\ %r%m%*%=[%{&fenc!=''?&fenc:&enc}][Line:%l/%L,Column:%c][%p%%]
-
 " 搜索设置
 set incsearch    "实时匹配
 set hlsearch     "高亮搜索项
 set ignorecase   "忽略大小写
 
 " 文本换行设置
-set nowrap      "设置不自动换行
+"set nowrap      "设置不自动换行
 set linebreak   "英文单词在换行时不被截断
 set iskeyword+=_,$,@,%,#,-    "带有如下符号的单词不要被换行分割
 autocmd FileType text setlocal textwidth=80   "纯文本时自动换行
@@ -294,10 +289,10 @@ set tags=/usr/include/tags
 "========================= 插件管理 =======================================
 " Vundle 是 Vim bundle 的简称, 是一个 Vim 插件管理器.
 "
-" 	:PluginList       - 列出所有已配置的插件
-" 	:PluginInstall    - 安装插件,追加 `!` 用以更新或使用 :PluginUpdate
-" 	:PluginSearch foo - 搜索 foo ; 追加 `!` 清除本地缓存
-" 	:PluginClean      - 清除未使用插件,需要确认; 追加 `!` 自动批准移除未使用插件
+"	:PluginList       - 列出所有已配置的插件
+"	:PluginInstall    - 安装插件,追加 `!` 用以更新或使用 :PluginUpdate
+"	:PluginSearch foo - 搜索 foo ; 追加 `!` 清除本地缓存
+"	:PluginClean      - 清除未使用插件,需要确认; 追加 `!` 自动批准移除未使用插件
 "==========================================================================
 filetype off  "必须
 "设置包括 vundle 和初始化相关的 runtime path
