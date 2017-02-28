@@ -126,6 +126,12 @@ map <silent> <leader>ee :e $HOME/.vimrc<cr>
 autocmd! bufwritepost *.vimrc source $HOME/.vimrc
 
 
+" 删除文件中所有行尾多余的空格========================================
+" strip all trailing whitespace in the current file
+" 快捷键 \w
+nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
+
+
 " 置粘贴模式========================================================
 " 这样粘贴过来的程序代码就不会错位了,但是开启之后快速补全不能用
 " 映射快捷键 F9 来开关粘贴模式：
