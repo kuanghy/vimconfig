@@ -107,7 +107,7 @@ set hlsearch     "高亮搜索项
 set ignorecase   "忽略大小写
 
 " 文本换行设置
-"set nowrap      "设置不自动换行
+"set nowrap      "设置不自动折行
 set linebreak   "英文单词在换行时不被截断
 set iskeyword+=_,$,@,%,#,-    "带有如下符号的单词不要被换行分割
 autocmd FileType text setlocal textwidth=80   "纯文本时自动换行
