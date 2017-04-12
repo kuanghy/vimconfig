@@ -18,7 +18,7 @@
 
 "********************************************************************
 " 判断当前系统类型 --------------------------------------------------
-if(has("win32") || has("win95") || has("win64") || has("win16")) 
+if(has("win32") || has("win95") || has("win64") || has("win16"))
     let g:iswindows=1
 else
     let g:iswindows=0
@@ -39,11 +39,11 @@ if has("autocmd")
         autocmd BufReadPost *
                   \ if line("'\"") > 0 && line("'\"") <= line("$") |
                   \ exe "normal g`\"" |
-                  \ endif 
+                  \ endif
     augroup END
 else
-    set autoindent 
-    always set autoindenting on 
+    set autoindent
+    always set autoindenting on
     "智能缩进，相应的有cindent，官方说autoindent可以支持各种文件的缩进，
     "但是效果会比只支持C/C++的cindent效果会差一点，但笔者并没有看出来
 endif " has("autocmd")
@@ -51,7 +51,7 @@ endif " has("autocmd")
 
 "********************************************************************
 " 允许鼠标的使用 ----------------------------------------------------
-if(g:iswindows==1) 
+if(g:iswindows==1)
     if has('mouse')
         set mouse=a
         set selection=exclusive
@@ -62,7 +62,7 @@ endif
 "------------------------------------------------- end --------------
 
 
-" 不要vim模仿vi模式，建议设置，否则会有很多不兼容的问题 
+" 不要vim模仿vi模式，建议设置，否则会有很多不兼容的问题
 set nocompatible
 
 " 不自动换行
@@ -91,16 +91,16 @@ set autochdir
 set wildmode=list:full
 
 " 显示文本处理模式:
-set showmode  
+set showmode
 
 " 处理未保存或者只读文件时，给出提示:
-set confirm 
+set confirm
 
 " 带有如下符号的单词不要被换行分割
 set iskeyword+=_,$,@,%,#,-
 
 " 英文单词在换行时不被截断
-set linebreak  
+set linebreak
 
 " 与windows共享剪贴板
 set clipboard+=unnamed
@@ -115,7 +115,7 @@ set viminfo+=!
 au BufRead,BufNewFile * setfiletype text
 
 " 命令模式时可以显示输入的字符，但是设置此项后vim无法复制
-"source $VIMRUNTIME/vimrc_example.vim  
+"source $VIMRUNTIME/vimrc_example.vim
 
 
 " 快捷打开编辑vimrc文件的键盘绑定==============================
@@ -125,11 +125,11 @@ autocmd! bufwritepost *.vimrc source $HOME/.vimrc
 
 
 "置粘贴模式====================================================
-" 这样粘贴过来的程序代码就不会错位了,但是开启之后快速补全不能用 
+" 这样粘贴过来的程序代码就不会错位了,但是开启之后快速补全不能用
 "set paste
 "快捷键映射：
-"map <F10> :set paste<CR> 
-"map <F11> :set nopaste<CR> 
+"map <F10> :set paste<CR>
+"map <F11> :set nopaste<CR>
 set pastetoggle=<F9>
 
 
@@ -149,7 +149,7 @@ set nobackup
 filetype on                "侦测文件类型插件
 filetype plugin on         "载入文件类型插件
 filetype plugin indent on  "为特定文件类型载入相关缩进文件
-set wildmenu 
+set wildmenu
 "使用 Tab 自动补全的时候,将补全内容使用一个漂亮的单行菜单形式显示出来
 
 
@@ -226,7 +226,7 @@ endif
  "   系编码方式 latin1 放到最后面。
  "=====================================================================
    set fileencodings=utf-8,gb2312,gbk,gb18030,ucs-bom,cp936,big5,euc-jp,euc-kr,latin1
-   set fileencoding=utf-8  
+   set fileencoding=utf-8
    set termencoding=utf-8
 "----------------------------------------------------------------------
 
@@ -327,24 +327,24 @@ autocmd bufnewfile *.php call HeaderPHP()
 "======================== ctags插件 =======================================
 "设置tags文件的生成、更新和删除，以映射快捷键
 "==========================================================================
-"F2生成/更新tags文件 
-set tags=tags; 
-set autochdir 
-function! UpdateTagsFile() 
-    silent !ctags -R --fields=+ianS --extra=+q 
-endfunction 
-nmap <F2> :call UpdateTagsFile()<CR> 
- 
-"Ctrl + F2删除tags文件 
-function! DeleteTagsFile() 
-    "Linux下的删除方法 
-    "silent !rm tags 
-    "Windows下的删除方法 
-    silent !del /F /Q tags 
-endfunction 
-nmap <C-F2> :call DeleteTagsFile()<CR> 
-"退出VIM之前删除tags文件 
-"au VimLeavePre * call DeleteTagsFile() 
+"F2生成/更新tags文件
+set tags=tags;
+set autochdir
+function! UpdateTagsFile()
+    silent !ctags -R --fields=+ianS --extra=+q
+endfunction
+nmap <F2> :call UpdateTagsFile()<CR>
+
+"Ctrl + F2删除tags文件
+function! DeleteTagsFile()
+    "Linux下的删除方法
+    "silent !rm tags
+    "Windows下的删除方法
+    silent !del /F /Q tags
+endfunction
+nmap <C-F2> :call DeleteTagsFile()<CR>
+"退出VIM之前删除tags文件
+"au VimLeavePre * call DeleteTagsFile()
 
 "加入搜索路径：
 set tags=/usr/include/tags
@@ -370,18 +370,18 @@ nmap nt :NERDTree<cr>
 "======================== AuthorInfo插件 ==================================
 "快速添加作者信息
 "==========================================================================
-let g:vimrc_author='Huoty' 
-let g:vimrc_email='sudohuoty@163.com' 
+let g:vimrc_author='Huoty'
+let g:vimrc_email='sudohuoty@163.com'
 let g:vimrc_homepage='http://konghy.blog.163.com/'
 " 映射到快捷键<F8>:
-nmap <F8> :AuthorInfoDetect<cr> 
+nmap <F8> :AuthorInfoDetect<cr>
 "------------------------------------------------ end ---------------------
 
 
 "====================== DoxygenToolkit插件 ================================
-"自动添加各类注释 
+"自动添加各类注释
 "==========================================================================
-" Usage: Dox       添加函数注释 
+" Usage: Dox       添加函数注释
 "        DoxLic    添加许可注释
 "        DoxAuthor 文件头注释
 
@@ -402,15 +402,15 @@ let g:doxygen_enhanced_color=1
 
 
 "======================= NERD_commenter插件 ===============================
-"NERD_commenter设定快捷键:  其中F3为"注释"，F4为""取消注释"    
+"NERD_commenter设定快捷键:  其中F3为"注释"，F4为""取消注释"
 "==========================================================================
-map <F3> <leader>cc  
+map <F3> <leader>cc
 map <F4> <leader>cu
 "------------------------------------------------ end ---------------------
 
 
 "======================= VIM-POWERLINE插件 ===============================
-" 状态栏插件配置    
+" 状态栏插件配置
 "==========================================================================
 set laststatus=2
 set t_Co=8
@@ -418,33 +418,33 @@ let g:Powerline_symbols='unicode'
 set encoding=utf8
 
 "===================3======= LargFile插件 =================================
-" 用于打开大文件    
+" 用于打开大文件
 "==========================================================================
 let g:LargeFile=5 "设置打开最大文件的标准为5M
 
 
 "================================================================
-"          indentLine 插件配置           
+"          indentLine 插件配置
 "================================================================
 " 用于显示对齐线，与 indent_guides 在显示方式上不同，根据自己喜好选择了
 " 在终端上会有屏幕刷新的问题，这个问题能解决有更好了
 " 开启/关闭对齐线
 nmap <leader>il :IndentLinesToggle<CR>
-  
+
 " 设置终端对齐线颜色，如果不喜欢可以将其注释掉采用默认颜色
 let g:indentLine_color_term = 2
-   
+
 " 设置 GUI 对齐线颜色，如果不喜欢可以将其注释掉采用默认颜色
 "  let g:indentLine_color_gui = '#A4E57E'
 
 "==========================================================================
 "                ## C和C++的编译和运行 ##
-" 
+"
 " 快捷键映射：
 "             <F5>：编译
 "             <F6>：运行
 "
-"========================================================================== 
+"==========================================================================
 func! CompileGcc()
     exec "w"
     let compilecmd="!gcc "

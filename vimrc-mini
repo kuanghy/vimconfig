@@ -6,6 +6,7 @@
 "      Version: 1.0.0
 "   CreateDate: 2016-10-10 10:08:06
 "      History: huoty  2016-10-10  1.0.0  第一个版本
+"               huoty  2017-04-12  1.1.0  功能增强
 "  Description: Linux 下 vim 用户自定义配置文件。
 "============================================================================
 
@@ -119,16 +120,18 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t\+\|\t\+\zs \+/
 "==========================================================================
 " 快捷键映射
 "==========================================================================
-"切换到粘贴模式, 避免粘贴文本错位
+" 切换到粘贴模式, 避免粘贴文本错位
 set pastetoggle=<F9>
 
-"启用代码折叠用空格键来开关折叠
+" 启用代码折叠用空格键来开关折叠
 set foldenable            "打开代码折叠
 set foldmethod=syntax     "选择代码折叠类型
 set foldlevel=100         "禁止自动折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc':'zo')<CR>
                           "用空格键来开关折叠
 
+" 删除文件中所有行尾多余的空格，快捷键 \w
+nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 "------------------------------------------------ end ---------------------
 
 
@@ -200,10 +203,10 @@ autocmd bufnewfile *.php call HeaderPHP()
 "========================= 插件管理 =======================================
 " Vundle 是 Vim bundle 的简称, 是一个 Vim 插件管理器.
 "
-" 	:PluginList       - 列出所有已配置的插件
-" 	:PluginInstall    - 安装插件,追加 `!` 用以更新或使用 :PluginUpdate
-" 	:PluginSearch foo - 搜索 foo ; 追加 `!` 清除本地缓存
-" 	:PluginClean      - 清除未使用插件,需要确认; 追加 `!` 自动批准移除未使用插件
+"	:PluginList       - 列出所有已配置的插件
+"	:PluginInstall    - 安装插件,追加 `!` 用以更新或使用 :PluginUpdate
+"	:PluginSearch foo - 搜索 foo ; 追加 `!` 清除本地缓存
+"	:PluginClean      - 清除未使用插件,需要确认; 追加 `!` 自动批准移除未使用插件
 "==========================================================================
 filetype off  "必须
 "设置包括 vundle 和初始化相关的 runtime path
@@ -221,6 +224,8 @@ Plugin 'vim-scripts/AutoComplPop'      "自动提示补全
 Plugin 'kien/rainbow_parentheses.vim'  "括号着色
 Plugin 'airblade/vim-gitgutter'        "Git Diff 状态
 Plugin 'terryma/vim-multiple-cursors'  "多重选取
+Plugin 'ctrlpvim/ctrlp.vim'            "在工程中快速定位某个文件
+Plugin 'dyng/ctrlsf.vim'               "在工程中全局搜索某个特定的字符
 
 call vundle#end()
 filetype plugin indent on
@@ -246,15 +251,25 @@ let g:multi_cursor_skip_key='<C-x>'    "跳过当前选中, 选中下一个
 let g:multi_cursor_quit_key='<Esc>'    "退出选择
 
 "Rainbow Parentheses 插件:
-let g:rbpt_colorpairs = [ ['brown', 'RoyalBlue3'],
-	\ ['Darkblue', 'SeaGreen3'], ['darkgray', 'DarkOrchid3'],
-	\ ['darkgreen', 'firebrick3'], ['darkcyan', 'RoyalBlue3'],
-	\ ['darkred', 'SeaGreen3'], ['darkmagenta', 'DarkOrchid3'],
-	\ ['brown', 'firebrick3'], ['gray', 'RoyalBlue3'],
-	\ ['black', 'SeaGreen3'], ['darkmagenta', 'DarkOrchid3'],
-	\ ['Darkblue', 'firebrick3'], ['darkgreen', 'RoyalBlue3'],
-	\ ['darkcyan', 'SeaGreen3'], ['darkred', 'DarkOrchid3'],['red', 'firebrick3'] ]
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
 let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
