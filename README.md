@@ -189,3 +189,29 @@ diw
 ```
 :w !sudo tee %
 ```
+
+## 文件编码与格式
+
+查看文件编码:
+
+```
+:set fileencoding
+```
+
+转换文件编码（示例转换为 utf-8）：
+
+```
+:set fileencoding=utf-8
+```
+
+查看文件格式：
+
+```
+:set fileformat?
+```
+
+设置文件格式为 unix：
+
+```
+:set fileformat=unix
+```
