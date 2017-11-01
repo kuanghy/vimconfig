@@ -319,7 +319,6 @@ Plugin 'vim-scripts/AutoComplPop'            "自动提示补全
 Plugin 'vim-scripts/echofunc.vim'            "显示函数原型
 Plugin 'vim-scripts/DoxygenToolkit.vim'      "自动添加各类注释
 Plugin 'Lokaltog/vim-powerline'              "美化状态栏
-Plugin 'Yggdroot/indentLine'                 "显示缩进对齐线
 Plugin 'scrooloose/nerdcommenter'            "快速注释
 Plugin 'kien/rainbow_parentheses.vim'        "括号着色
 Plugin 'kevinw/pyflakes-vim'                 "Python 语法检查

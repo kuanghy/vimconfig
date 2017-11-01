@@ -3,17 +3,6 @@ VimConfig
 
 Unix 平台下的 vim 配置
 
-## 安装
-
-> git clone https://git.oschina.net/kuanghy/vimconfig.git
-
-> cp -a vim ~/.vim
-
-> cp vimrc ~/.vimrc
-
-> cp vim/doc/viskey.5 /usr/share/man/zh_CN/man5/
-
-
 ## 精简版安装
 
 安装插件管理器 [Vundle](https://github.com/VundleVim/Vundle.vim):
