@@ -204,3 +204,23 @@ diw
 ```
 :set fileformat=unix
 ```
+
+## 处理 UTF-8 编码中的 BOM
+
+查询 BOM
+
+```
+:set bomb?
+```
+
+添加 BOM
+
+```
+:set bomb
+```
+
+删除BOM
+
+```
+:set nobomb
+```
