@@ -13,7 +13,7 @@ Unix 平台下的 vim 配置
 
 > cp vimrc-mini ~/.vimrc
 
-打开 vim, 命令模式输出 `:PluginList` 安装插件
+打开 vim, 命令模式输出 `:PluginInstall` 安装插件
 
 ## Pro 版安装
 

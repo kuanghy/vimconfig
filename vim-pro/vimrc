@@ -195,11 +195,6 @@ imap '' ''<ESC>i
 imap <> <><ESC>i
 "imap { {}<ESC>i<CR><ESC>V<O
 
-"set smartindent
-"set tabstop=4
-"set shiftwidth=4
-"set expandtab
-
 
 "==========================================================================
 "新建 shell 脚本文件时，自动添加文件头
@@ -207,8 +202,8 @@ imap <> <><ESC>i
 function HeaderShell()
     call setline(1, "#! /bin/bash")
     call append(1, "")
-    call append(2, "# Filename: " . expand('%:t') . " " . strftime('%Y-%m-%d', localtime()))
-    call append(3, "# Author: Huoty <sudohuoty@gmail.com>")
+    call append(2 "# Author: Huoty <sudohuoty@gmail.com>")
+    call append(3, "# CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
     call append(4, "# Script starts from here:")
     normal G
     normal o
@@ -219,28 +214,25 @@ autocmd bufnewfile *.sh call HeaderShell()
 
 
 "==========================================================================
-"新建 python 文件时，自动添加文件头
+" 新建 Python 文件时，自动添加文件头
 "==========================================================================
 function HeaderPython()
     call setline(1, "#! /usr/bin/env python")
     call append(1, "# -*- coding: utf-8 -*-")
     call append(2, "")
-    call append(3, "# *************************************************************")
-    call append(4, "#  Copyright (c) Huoty - All rights reserved")
-    call append(5, "#")
-    call append(6, "#      Author: Huoty <sudohuoty@gmail.com>")
-    call append(7, "#  CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
-    call append(8, "# *************************************************************")
-    call append(9, "")
-    call append(10, "")
-    call append(11, "")
-    call append(12, "# Script starts from here")
+    call append(3, "# Copyright (c) Huoty, All rights reserved")
+    call append(4, "# Author: Huoty <sudohuoty@gmail.com>")
+    call append(5, "# CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
     normal G
     normal o
     normal o
 endf
 
-autocmd bufnewfile *.py call HeaderPython()
+if filereadable(expand("~/.vim/skeleton/skeleton.local.py"))
+    autocmd bufnewfile *.py 0r ~/.vim/skeleton/skeleton.local.py
+else
+    autocmd bufnewfile *.py call HeaderPython()
+endif
 "------------------------------------------------ end ---------------------
 
 
@@ -322,6 +314,7 @@ Plugin 'Lokaltog/vim-powerline'              "美化状态栏
 Plugin 'scrooloose/nerdcommenter'            "快速注释
 Plugin 'kien/rainbow_parentheses.vim'        "括号着色
 Plugin 'kevinw/pyflakes-vim'                 "Python 语法检查
+Plugin 'Vimjas/vim-python-pep8-indent'       "PEP8 风格的缩进
 Plugin 'airblade/vim-gitgutter'              "Git Diff 状态
 Plugin 'terryma/vim-multiple-cursors'        "多重选取
 Plugin 'Valloric/vim-operator-highlight'     "高亮运算符

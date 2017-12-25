@@ -138,8 +138,8 @@ nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 function HeaderShell()
   call setline(1, "#! /bin/bash")
   call append(1, "")
-  call append(2, "# Filename: " . expand('%:t') . " " . strftime('%Y-%m-%d', localtime()))
-  call append(3, "# Author: Huoty <sudohuoty@gmail.com>")
+  call append(2, "# Author: Huoty <sudohuoty@gmail.com>")
+  call append(3, "# CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
   call append(4, "# Script starts from here:")
   normal G
   normal o
@@ -157,16 +157,9 @@ function HeaderPython()
     call setline(1, "#! /usr/bin/env python")
     call append(1, "# -*- coding: utf-8 -*-")
     call append(2, "")
-    call append(3, "# *************************************************************")
-    call append(4, "#  Copyright (c) Huoty - All rights reserved")
-    call append(5, "#")
-    call append(6, "#      Author: Huoty <sudohuoty@gmail.com>")
-    call append(7, "#  CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
-    call append(8, "# *************************************************************")
-    call append(9, "")
-    call append(10, "")
-    call append(11, "")
-    call append(12, "# Script starts from here")
+    call append(3, "# Copyright (c) Huoty, All rights reserved")
+    call append(4, "# Author: Huoty <sudohuoty@gmail.com>")
+    call append(5, "# CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
     normal G
     normal o
     normal o
