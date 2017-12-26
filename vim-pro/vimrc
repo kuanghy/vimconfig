@@ -202,7 +202,7 @@ imap <> <><ESC>i
 function HeaderShell()
     call setline(1, "#! /bin/bash")
     call append(1, "")
-    call append(2 "# Author: Huoty <sudohuoty@gmail.com>")
+    call append(2, "# Author: Huoty <sudohuoty@gmail.com>")
     call append(3, "# CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
     call append(4, "# Script starts from here:")
     normal G
