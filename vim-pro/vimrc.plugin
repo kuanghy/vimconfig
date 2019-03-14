@@ -80,7 +80,7 @@ let g:Powerline_symbols='unicode'
 set encoding=utf8
 
 
-"===================3======= LargFile插件 =================================
+"=========================== LargFile插件 =================================
 " 用于打开大文件
 "==========================================================================
 let g:LargeFile=5  "设置打开最大文件的标准为5M
@@ -121,3 +121,10 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+
+"================================================================
+" PyFlakes 插件
+"================================================================
+let g:pyflakes_use_quickfix = 0
+let g:pyflakes_prefer_python_version = 2
