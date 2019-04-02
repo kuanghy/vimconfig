@@ -13,6 +13,7 @@
 "               huoty  2015-08-06  7.0.0  添加 Python 语法检测插件 pyflakes
 "               huoty  2016-07-07  7.0.1  新建 shell 脚本时载入一个模板
 "               huoty  2016-12-07  7.1.0  整理配置, 采用插件管理工具管理插件
+"               huoty  2019-04-02  7.2.0  主题和字体兼容 MacVim
 "  Description: Vim 用户自定义配置文件
 "============================================================================
 
@@ -40,13 +41,16 @@ filetype on                "侦测文件类型插件
 filetype plugin on         "载入文件类型插件
 filetype plugin indent on  "为特定文件类型载入相关缩进文件
 
-" 设置主题
-colorscheme ron
-set background=dark
-
-" 设置字体
-set guifont=Monaco:h12:cANSI
-set guifontwide=幼圆:h12:cGB2312
+" 设置主题和字体
+if has("gui_macvim")
+    colorscheme desert
+    set guifont=Monaco:h14
+else
+    colorscheme ron
+    set background=dark
+    set guifont=Monaco:h12:cANSI
+    set guifontwide=幼圆:h12:cGB2312
+endif
 
 " 语言设置
 set langmenu=zh_CN.UTF-8
