@@ -7,6 +7,7 @@
 "   CreateDate: 2016-10-10 10:08:06
 "      History: huoty  2016-10-10  1.0.0  第一个版本
 "               huoty  2017-04-12  1.1.0  功能增强
+"               huoty  2019-05-21  1.2.0  优化配置；新建 lua 文件时添加插入默认头注释
 "  Description: Linux 下 vim 用户自定义配置文件。
 "============================================================================
 
@@ -187,6 +188,22 @@ function HeaderPHP()
 endf
 
 autocmd bufnewfile *.php call HeaderPHP()
+"------------------------------------------------ end ---------------------
+
+
+"==========================================================================
+"新建 Lua 文件时，自动添加文件头
+"==========================================================================
+function HeaderLua()
+    call setline(1, "-- Copyright (c) Huoty, All rights reserved")
+    call append(1, "-- Author: Huoty <sudohuoty@gmail.com>")
+    call append(2, "-- CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
+    normal G
+    normal o
+    normal o
+endf
+
+autocmd bufnewfile *.lua call HeaderLua()
 "------------------------------------------------ end ---------------------
 
 

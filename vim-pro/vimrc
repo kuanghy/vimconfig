@@ -14,6 +14,7 @@
 "               huoty  2016-07-07  7.0.1  新建 shell 脚本时载入一个模板
 "               huoty  2016-12-07  7.1.0  整理配置, 采用插件管理工具管理插件
 "               huoty  2019-04-02  7.2.0  主题和字体兼容 MacVim
+"               huoty  2019-05-21  7.2.1  新建 lua 文件时添加插入默认头注释
 "  Description: Vim 用户自定义配置文件
 "============================================================================
 
@@ -241,7 +242,7 @@ endif
 
 
 "==========================================================================
-"新建PHP文件时，自动添加文件头
+"新建 PHP 文件时，自动添加文件头
 "==========================================================================
 function HeaderPHP()
     call setline(1, "<?php  # Script -- " . expand("%:t"))
@@ -253,11 +254,25 @@ function HeaderPHP()
     call append(6, "")
     call append(7, "?>")
     normal G
-    normal O
-    normal O
 endf
 
 autocmd bufnewfile *.php call HeaderPHP()
+"------------------------------------------------ end ---------------------
+
+
+"==========================================================================
+"新建 Lua 文件时，自动添加文件头
+"==========================================================================
+function HeaderLua()
+    call setline(1, "-- Copyright (c) Huoty, All rights reserved")
+    call append(1, "-- Author: Huoty <sudohuoty@gmail.com>")
+    call append(2, "-- CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
+    normal G
+    normal o
+    normal o
+endf
+
+autocmd bufnewfile *.lua call HeaderLua()
 "------------------------------------------------ end ---------------------
 
 
