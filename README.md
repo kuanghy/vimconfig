@@ -5,7 +5,7 @@ Unix 平台下的 vim 配置
 
 ## 精简版安装
 
-安装插件管理器 [Vundle](https://github.com/VundleVim/Vundle.vim):
+精简版比较轻量，去掉了一些比较笨重的配置和插件。首先安装插件管理器 [Vundle](https://github.com/VundleVim/Vundle.vim):
 
 > $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
@@ -17,7 +17,7 @@ Unix 平台下的 vim 配置
 
 ## Pro 版安装
 
-Pro 版本有更加丰富的配置和插件。安装只需要进入 vim-pro 目录，然后执行 make 命令即可：
+Pro 版本增加了一些配置和插件，增强了对 Python 高亮的支持。安装只需要进入 vim-pro 目录，然后执行 make 命令即可：
 
 > cd ./vim-pro
 >
