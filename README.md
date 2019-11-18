@@ -17,13 +17,13 @@ Unix 平台下的 vim 配置
 
 ## Pro 版安装
 
-Pro 版本精简了一些配置和插件，并用插件管理器 Vundle 管理插件，同时增强了对 Python 高亮的支持。安装只需要进入 vim-pro 目录，然后执行 make 命令即可：
+Pro 版本有更加丰富的配置和插件。安装只需要进入 vim-pro 目录，然后执行 make 命令即可：
 
 > cd ./vim-pro
 >
 > make
 
-如何需要手动安装，可以参考 [Makefile](./vim-pro/Makefile) 文件的内容
+如果需要手动安装，可以参考 [Makefile](./vim-pro/Makefile) 文件的内容
 
 ## 快捷键
 
