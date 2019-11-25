@@ -1,7 +1,7 @@
 "============================================================================
 "     FileName: .vimrc
 "       Author: Huoty
-"        Email: sudohuoty@gmail.com
+"        Email: sudohuoty@163.com
 "     HomePage: http://www.konghy.cn/
 "      Version: 1.0.0
 "   CreateDate: 2016-10-10 10:08:06
@@ -139,7 +139,7 @@ nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 function HeaderShell()
   call setline(1, "#! /bin/bash")
   call append(1, "")
-  call append(2, "# Author: Huoty <sudohuoty@gmail.com>")
+  call append(2, "# Author: Huoty <sudohuoty@163.com>")
   call append(3, "# CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
   call append(4, "# Script starts from here:")
   normal G
@@ -159,7 +159,7 @@ function HeaderPython()
     call append(1, "# -*- coding: utf-8 -*-")
     call append(2, "")
     call append(3, "# Copyright (c) Huoty, All rights reserved")
-    call append(4, "# Author: Huoty <sudohuoty@gmail.com>")
+    call append(4, "# Author: Huoty <sudohuoty@163.com>")
     call append(5, "# CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
     normal G
     normal o
@@ -196,7 +196,7 @@ autocmd bufnewfile *.php call HeaderPHP()
 "==========================================================================
 function HeaderLua()
     call setline(1, "-- Copyright (c) Huoty, All rights reserved")
-    call append(1, "-- Author: Huoty <sudohuoty@gmail.com>")
+    call append(1, "-- Author: Huoty <sudohuoty@163.com>")
     call append(2, "-- CreateTime: " . strftime('%Y-%m-%d %T', localtime()))
     normal G
     normal o
