@@ -119,6 +119,7 @@ set wildmenu   "使用 Tab 自动补全的时用菜单列出内容
 set incsearch    "实时匹配
 set hlsearch     "高亮搜索项
 set ignorecase   "忽略大小写
+"set nowrapscan   "禁止循环搜索
 
 " 文本换行设置
 "set nowrap      "设置不自动折行
@@ -348,6 +349,8 @@ Plugin 'terryma/vim-multiple-cursors'        "多重选取
 Plugin 'Valloric/vim-operator-highlight'     "高亮运算符
 Plugin 'ctrlpvim/ctrlp.vim'                  "在工程中快速定位某个文件
 Plugin 'dyng/ctrlsf.vim'                     "在工程中全局搜索某个特定的字符
+Plugin 'tpope/vim-surround'                  "快速添加或修改成对的符号
+Plugin 'tpope/vim-repeat'                    "增强重复命令
 "Plugin 'jiangmiao/auto-pairs'               "括号和引号自动补全
 "Plugin 'chrisbra/csv.vim'                   "格式化 CSV 文件
 
