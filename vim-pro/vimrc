@@ -111,6 +111,12 @@ set softtabstop=4
 set smarttab      "只按一下 Backspace 就删除 4 个空格
 set expandtab     "编辑时将所有 Tab 替换为空格
 
+" 对于 HTML 文件 Tab 设置为两个空格
+au BufNewFile,BufRead *.html
+    \ set tabstop=2     |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+
 " 自动补全
 set wildmode=list:full  "可用来改动补全时采用的方式
 set wildmenu   "使用 Tab 自动补全的时用菜单列出内容
@@ -331,7 +337,6 @@ Plugin 'VundleVim/Vundle.vim'  "让 vundle 管理插件版本, 必须
 "插件列表:
 Plugin 'vim-scripts/a.vim'
 Plugin 'vim-scripts/c.vim'
-Plugin 'vim-scripts/taglist.vim'
 Plugin 'vim-scripts/winmanager'              "文件浏览
 Plugin 'scrooloose/nerdtree'                 "显示目录树
 Plugin 'vim-scripts/AuthorInfo'              "快速添加作者信息
@@ -351,11 +356,21 @@ Plugin 'ctrlpvim/ctrlp.vim'                  "在工程中快速定位某个文�
 Plugin 'dyng/ctrlsf.vim'                     "在工程中全局搜索某个特定的字符
 Plugin 'tpope/vim-surround'                  "快速添加或修改成对的符号
 Plugin 'tpope/vim-repeat'                    "增强重复命令
-"Plugin 'jiangmiao/auto-pairs'               "括号和引号自动补全
-"Plugin 'chrisbra/csv.vim'                   "格式化 CSV 文件
+
+"按需配置的插件列表
+"Plugin 'vim-scripts/taglist.vim'
+"Plugin 'Yggdroot/indentLine'                 "缩进指示线插件
+"Plugin 'jiangmiao/auto-pairs'                "括号和引号自动补全
+"Plugin 'chrisbra/csv.vim'                    "格式化 CSV 文件
 
 call vundle#end()
 filetype plugin indent on
+
+" 缩进指示线插件配置
+"let g:indentLine_enabled = 0
+"let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+"let g:indentLine_leadingSpaceEnabled = 1
+"let g:indentLine_leadingSpaceChar = '·'
 
 "最后如果插件配置文件存在则加载插件配置文件
 if filereadable(expand("~/.vimrc.plugin"))
