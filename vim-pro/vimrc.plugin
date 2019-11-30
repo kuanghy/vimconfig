@@ -29,40 +29,6 @@ let NERDTreeWinSize=25  "窗口大小
 nmap nt :NERDTree<cr>
 
 
-"======================== AuthorInfo 插件 ==================================
-" 快速添加作者信息
-"==========================================================================
-let g:vimrc_author='Huoty'
-let g:vimrc_email='sudohuoty@163.com'
-let g:vimrc_homepage='http://konghy.blog.163.com/'
-" 映射到快捷键<F8>:
-nmap <F8> :AuthorInfoDetect<cr>
-"------------------------------------------------ end ---------------------
-
-
-"====================== DoxygenToolkit 插件 ================================
-" 自动添加各类注释
-"==========================================================================
-" Usage: Dox       添加函数注释
-"        DoxLic    添加许可注释
-"        DoxAuthor 文件头注释
-
-let g:DoxygenToolkit_authorName="Huoty, sudohuoty@163.com"
-let g:DoxygenToolkit_briefTag_pre="@brief "
-let g:DoxygenToolkit_paramTag_pre="@param "
-let g:DoxygenToolkit_returnTag="@returns "
-"let g:DoxygenToolkit_blockHeader="---------------------------------------------------"
-"let g:DoxygenToolkit_blockFooter="---------------------------------------------------"
-let g:DoxygenToolkit_licenseTag="GPL"
-
-let s:licenseTag = "Copyright(C)\<enter>"
-let s:licenseTag = s:licenseTag . "For free\<enter>"
-let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
-let g:DoxygenToolkit_licenseTag = s:licenseTag
-let g:DoxygenToolkit_briefTag_funcName="yes"
-let g:doxygen_enhanced_color=1
-
-
 "======================= NERD_commenter插件 ===============================
 " NERD_commenter 设定快捷键:  其中F3为"注释"，F4为""取消注释"
 "==========================================================================

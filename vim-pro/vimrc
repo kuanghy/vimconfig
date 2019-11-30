@@ -15,7 +15,8 @@
 "               huoty  2016-12-07  7.1.0  整理配置, 采用插件管理工具管理插件
 "               huoty  2019-04-02  7.2.0  主题和字体兼容 MacVim
 "               huoty  2019-05-21  7.2.1  新建 lua 文件时添加插入默认头注释
-"               huoty  2019-12-25  7.2.2  配置与系统剪切板共享复制粘贴
+"               huoty  2019-11-25  7.2.2  配置与系统剪切板共享复制粘贴
+"               huoty  2019-11-30  7.2.3  整理插件，更好的支持 Python 文件编辑
 "  Description: Vim 用户自定义配置文件
 "============================================================================
 
@@ -142,7 +143,7 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t\+\|\t\+\zs \+/
 
 
 " 快捷打开并编辑 vimrc 文件的键盘绑定====================================
-" 命令模式输入\ee打开.vimrc文件
+" 命令模式输入 \ee 打开 .vimrc 配置文件
 map <silent> <leader>ee :e $HOME/.vimrc<cr>
 autocmd! bufwritepost *.vimrc source $HOME/.vimrc
 
@@ -169,7 +170,9 @@ set foldenable            " 打开代码折叠
 set foldmethod=syntax     " 选择代码折叠类型
 set foldlevel=100         " 禁止自动折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc':'zo')<CR>
-                          "用空格键来开关折叠
+                          " 用空格键来开关折叠
+autocmd Filetype python set foldmethod=indent
+                          " 用缩进来折叠
 
 
 "======================================================================
@@ -337,13 +340,12 @@ Plugin 'VundleVim/Vundle.vim'  "让 vundle 管理插件版本, 必须
 "插件列表:
 Plugin 'vim-scripts/a.vim'
 Plugin 'vim-scripts/c.vim'
+Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/winmanager'              "文件浏览
 Plugin 'scrooloose/nerdtree'                 "显示目录树
-Plugin 'vim-scripts/AuthorInfo'              "快速添加作者信息
 Plugin 'vim-scripts/LargeFile'               "用于打开大文件
 Plugin 'vim-scripts/AutoComplPop'            "自动提示补全
 Plugin 'vim-scripts/echofunc.vim'            "显示函数原型
-Plugin 'vim-scripts/DoxygenToolkit.vim'      "自动添加各类注释
 Plugin 'Lokaltog/vim-powerline'              "美化状态栏
 Plugin 'scrooloose/nerdcommenter'            "快速注释
 Plugin 'kien/rainbow_parentheses.vim'        "括号着色
@@ -358,7 +360,6 @@ Plugin 'tpope/vim-surround'                  "快速添加或修改成对的符�
 Plugin 'tpope/vim-repeat'                    "增强重复命令
 
 "按需配置的插件列表
-"Plugin 'vim-scripts/taglist.vim'
 "Plugin 'Yggdroot/indentLine'                 "缩进指示线插件
 "Plugin 'jiangmiao/auto-pairs'                "括号和引号自动补全
 "Plugin 'chrisbra/csv.vim'                    "格式化 CSV 文件
@@ -371,6 +372,10 @@ filetype plugin indent on
 "let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 "let g:indentLine_leadingSpaceEnabled = 1
 "let g:indentLine_leadingSpaceChar = '·'
+
+" TagBar 插件快捷键映射
+nnoremap <leader>tbo :TagbarOpen<CR>
+nnoremap <leader>tbt :TagbarToggle<CR>
 
 "最后如果插件配置文件存在则加载插件配置文件
 if filereadable(expand("~/.vimrc.plugin"))
