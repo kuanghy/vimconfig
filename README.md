@@ -62,17 +62,6 @@ A(d)    --快速切换头文件和源文件
 ctrl+] （c）  --跳到定义处，ctags插件应用
 ctrl+t （c）  --返回，ctags插件应用
 
-运行终端命令：(m)
-   ConqueTerm       <command>:  在当前的窗口打开<command>
-   ConqueTermSplit  <command>:  横向分割一个窗口之后打开<command>
-   ConqueTermVSplit <command>:  竖向分割一个窗口之后打开<command>
-   ConqueTermTab    <command>:  先建一个tab页之后打开<command>
-
-添加各类注释：(m)
-   Dox           --添加函数注释
-   DoxLic        --添加许可协议
-   DoxAuthor     --添加作者信息
-
 多重光标选取：(m)
    ctrl+n  选中光标下的单词，继续按则选择下一个相同的单词
    ctrl+p  撤销选择，选中上一个
