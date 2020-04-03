@@ -17,6 +17,7 @@
 "               huoty  2019-05-21  7.2.1  新建 lua 文件时添加插入默认头注释
 "               huoty  2019-11-25  7.2.2  配置与系统剪切板共享复制粘贴
 "               huoty  2019-11-30  7.2.3  整理插件，更好的支持 Python 文件编辑
+"               huoty  2020-04-04  7.2.4  新建 Markdown 文件时初始化一个模板
 "  Description: Vim 用户自定义配置文件
 "============================================================================
 
@@ -295,6 +296,22 @@ autocmd bufnewfile *.lua call HeaderLua()
 "------------------------------------------------ end ---------------------
 
 
+"==========================================================================
+"新建 Markdown 文件时，自动创建一个模板
+"==========================================================================
+function HeaderMarkdown()
+    call setline(1, "<Title>")
+    call append(1, "========")
+    call append(2, "*Copyright (c) Huoty, " . strftime('%Y.%m.%d', localtime()) . "*")
+    normal G
+    normal O
+    normal O
+endf
+
+autocmd bufnewfile *.md call HeaderMarkdown()
+"------------------------------------------------ end ---------------------
+
+
 "======================== ctags 配置 =======================================
 " 设置 tags 文件的生成、更新和删除，以映射快捷键
 "==========================================================================
@@ -349,7 +366,7 @@ Plugin 'vim-scripts/echofunc.vim'            "显示函数原型
 Plugin 'Lokaltog/vim-powerline'              "美化状态栏
 Plugin 'scrooloose/nerdcommenter'            "快速注释
 Plugin 'kien/rainbow_parentheses.vim'        "括号着色
-Plugin 'kevinw/pyflakes-vim'                 "Python 语法检查
+"Plugin 'kevinw/pyflakes-vim'                 "Python 语法检查
 Plugin 'Vimjas/vim-python-pep8-indent'       "PEP8 风格的缩进
 Plugin 'airblade/vim-gitgutter'              "Git Diff 状态
 Plugin 'terryma/vim-multiple-cursors'        "多重选取
