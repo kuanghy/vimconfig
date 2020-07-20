@@ -142,6 +142,9 @@ set clipboard+=unnamed
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t\+\|\t\+\zs \+/
 
+" 识别 Python 文件类型
+autocmd BufRead,BufNewFile *.py,*.pyx set filetype=python
+
 
 " 快捷打开并编辑 vimrc 文件的键盘绑定====================================
 " 命令模式输入 \ee 打开 .vimrc 配置文件
@@ -254,9 +257,9 @@ function HeaderPython()
 endf
 
 if filereadable(expand("~/.vim/skeleton/skeleton.local.py"))
-    autocmd bufnewfile *.py 0r ~/.vim/skeleton/skeleton.local.py
+    autocmd bufnewfile *.py,*.pyx 0r ~/.vim/skeleton/skeleton.local.py
 else
-    autocmd bufnewfile *.py call HeaderPython()
+    autocmd bufnewfile *.py,*.pyx call HeaderPython()
 endif
 "------------------------------------------------ end ---------------------
 

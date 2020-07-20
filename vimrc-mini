@@ -32,8 +32,8 @@ set lazyredraw
 set ttyfast
 
 " 高亮行和列
-set cursorline   "突出显示当前行"
-"set cursorcolumn  "突出显示当前列"
+set cursorline   "突出显示当前行
+"set cursorcolumn  "突出显示当前列
 
 " 设置字体
 set guifont=Monaco:h12:cANSI
@@ -121,6 +121,9 @@ imap <> <><ESC>
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t\+\|\t\+\zs \+/
 
+" 识别 Python 文件类型
+autocmd BufRead,BufNewFile *.py,*.pyx set filetype=python
+
 
 "==========================================================================
 " 快捷键映射
@@ -166,7 +169,7 @@ function HeaderPython()
     normal o
 endf
 
-autocmd bufnewfile *.py call HeaderPython()
+autocmd bufnewfile *.py,*.pyx call HeaderPython()
 "------------------------------------------------ end ---------------------
 
 
