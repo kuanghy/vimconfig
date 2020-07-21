@@ -146,7 +146,7 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t\+\|\t\+\zs \+/
 autocmd BufRead,BufNewFile *.py,*.pyx set filetype=python
 
 
-" 快捷打开并编辑 vimrc 文件的键盘绑定====================================
+" 快捷打开并编辑 vimrc 文件的键盘绑定=================================
 " 命令模式输入 \ee 打开 .vimrc 配置文件
 map <silent> <leader>ee :e $HOME/.vimrc<cr>
 autocmd! bufwritepost *.vimrc source $HOME/.vimrc
@@ -158,10 +158,20 @@ autocmd! bufwritepost *.vimrc source $HOME/.vimrc
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 
 
-" 置粘贴模式========================================================
+" 置粘贴模式==========================================================
 " 这样粘贴过来的程序代码就不会错位了,但是开启之后快速补全不能用
 " 映射快捷键 F9 来开关粘贴模式：
 set pastetoggle=<F9>
+
+
+" 输入括号和引号自动跳到中间==========================================
+imap () ()<ESC>i
+imap [] []<ESC>i
+imap {} {}<ESC>i
+imap "" ""<ESC>i
+imap '' ''<ESC>i
+imap <> <><ESC>i
+"imap { {}<ESC>i<CR><ESC>V<O
 
 
 " 修改自动补全列表背景颜色============================================
@@ -169,7 +179,7 @@ highlight Pmenu    term=bold cterm=bold ctermfg=8
 highlight PmenuSel term=bold cterm=bold ctermfg=8
 
 
-" 启用代码折叠用空格键来开关折叠=======================================
+" 启用代码折叠用空格键来开关折叠======================================
 set foldenable            " 打开代码折叠
 set foldmethod=syntax     " 选择代码折叠类型
 set foldlevel=100         " 禁止自动折叠
@@ -203,25 +213,34 @@ set termencoding=utf-8
 "==========================================================================
 "开始编辑一个文件时读入一个骨架（样板）文件：
 "==========================================================================
-autocmd BufNewFile *.c     0r  ~/.vim/skeleton/skeleton.c
-autocmd BufNewFile *.cpp   0r  ~/.vim/skeleton/skeleton.cpp
-autocmd BufNewFile *.h     0r  ~/.vim/skeleton/skeleton.h
+if filereadable(expand("~/.vim/skeleton/skeleton.local.c"))
+    autocmd BufNewFile *.c  0r  ~/.vim/skeleton/skeleton.local.c
+else
+    autocmd bufnewfile *.c so ~/.vim/skeleton/skeleton.c
+    autocmd bufnewfile *.c exe "1," . 10 . "g/CreateTime:/s//CreateTime: " .
+        \ strftime('%Y-%m-%d %T', localtime())
+endif
+
+if filereadable(expand("~/.vim/skeleton/skeleton.local.cpp"))
+    autocmd BufNewFile *.cpp  0r  ~/.vim/skeleton/skeleton.local.cpp
+else
+    autocmd bufnewfile *.cpp so ~/.vim/skeleton/skeleton.cpp
+    autocmd bufnewfile *.cpp exe "1," . 10 . "g/CreateTime:/s//CreateTime: " .
+        \ strftime('%Y-%m-%d %T', localtime())
+endif
+
+if filereadable(expand("~/.vim/skeleton/skeleton.local.h"))
+    autocmd BufNewFile *.h  0r  ~/.vim/skeleton/skeleton.local.h
+else
+    autocmd bufnewfile *.h so ~/.vim/skeleton/skeleton.h
+    autocmd bufnewfile *.h exe "1," . 10 . "g/CreateTime:/s//CreateTime: " .
+        \ strftime('%Y-%m-%d %T', localtime())
+endif
+
 autocmd BufNewFile *.java  0r  ~/.vim/skeleton/skeleton.java
 autocmd BufNewFile *.html  0r  ~/.vim/skeleton/skeleton.html
 autocmd BufNewFile Makefile  0r  ~/.vim/skeleton/Makefile
 "------------------------------------------------ end ---------------------
-
-
-"==========================================================================
-"输入括号和引号自动跳到中间
-"==========================================================================
-imap () ()<ESC>i
-imap [] []<ESC>i
-imap {} {}<ESC>i
-imap "" ""<ESC>i
-imap '' ''<ESC>i
-imap <> <><ESC>i
-"imap { {}<ESC>i<CR><ESC>V<O
 
 
 "==========================================================================
@@ -359,7 +378,7 @@ Plugin 'VundleVim/Vundle.vim'  "让 vundle 管理插件版本, 必须
 
 "插件列表:
 Plugin 'vim-scripts/a.vim'
-Plugin 'vim-scripts/c.vim'
+"Plugin 'vim-scripts/c.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/winmanager'              "文件浏览
 Plugin 'scrooloose/nerdtree'                 "显示目录树
