@@ -1,4 +1,4 @@
 *.py[cod]
 *.cache
 .DS_Store
-*.local.py
+*.local.*
