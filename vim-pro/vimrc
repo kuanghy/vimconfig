@@ -397,6 +397,7 @@ Plugin 'ctrlpvim/ctrlp.vim'                  "在工程中快速定位某个文�
 Plugin 'dyng/ctrlsf.vim'                     "在工程中全局搜索某个特定的字符
 Plugin 'tpope/vim-surround'                  "快速添加或修改成对的符号
 Plugin 'tpope/vim-repeat'                    "增强重复命令
+Plugin 'MTDL9/vim-log-highlighting'          "高亮日志文件
 
 "按需配置的插件列表
 "Plugin 'Yggdroot/indentLine'                 "缩进指示线插件
