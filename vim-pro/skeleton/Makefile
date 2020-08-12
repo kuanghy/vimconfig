@@ -43,11 +43,14 @@ OBJ = $(patsubst %.c,%.o,$(SRC))
 # 编译选项
 CC = gcc
 W = -Wall
-O = -O0
+O = -O2
 CFLAGS = -c
 CPPFLAGS =
-DEBUG = -g
-LIBS =
+LDFLAGS =
+INCLUDE =     # 添加头文件搜索路径 -I
+LIBINCLUDE =  # 添加库文件搜索路径 -L
+LIBS =        # 搜索库文件 -l
+DEBUG =       # 调试选项 -g
 
 # 程序安装目录
 DESTDIR =
@@ -66,10 +69,10 @@ TARNAME = $(PRONAME)_v$(VERSION)_`date +%Y``date +%m``date +%d``date +%H``date +
 all: $(PROGRAM)
 
 $(PROGRAM): $(OBJ)
-	$(CC) $(W) $(DEBUG) $(OBJ) -o $@
+	$(CC) $(W) $(LDFLAGS) $(DEBUG) $(OBJ) -o $@
 
 %.o: %.c
-	$(CC) $(W) $(DEBUG) $(O) $(CFLAGS) $< -o $@
+	$(CC) $(W) $(DEBUG) $(O) $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 
 #### 清除构建:
@@ -145,7 +148,7 @@ show:
 	@echo "LIBDIR  : " $(LIBDIR)
 	@echo "INCDIR  : " $(INCDIR)
 	@echo "BAKDIR  : " $(BAKDIR)
-	@echo "complile option: " $(CC) $(W) $(O) $(CFLAGS) $(CPPFLAGS) $(DEBUG) $(LIBS)
+	@echo "complile option: " $(CC) $(W) $(O) $(CFLAGS) $(CPPFLAGS) $(DEBUG) $(INCLUDE) $(LIBINCLUDE) $(LIBS)
 	@echo "backup archive name: " $(TARNAME)".tar.gz"
 
 
