@@ -1,3 +1,4 @@
+:insert
 #############################################################
 # Generic Makefile for C/C++ Program
 #
@@ -19,7 +20,7 @@
 #   $ make backup    Backup the project
 #   $ make help      Get the usage of the makefile
 #   $ make show      Show variables (for debug use only)
-# 
+#
 #============================================================
 
 
@@ -36,7 +37,7 @@ VERSION = 0.1
 PROGRAM = app
 
 # 获取当前目录下的源文件
-SRC = $(wildcard *.c)  
+SRC = $(wildcard *.c)
 OBJ = $(patsubst %.c,%.o,$(SRC))
 
 # 编译选项
@@ -46,7 +47,7 @@ O = -O0
 CFLAGS = -c
 CPPFLAGS =
 DEBUG = -g
-LIBS = 
+LIBS =
 
 # 程序安装目录
 DESTDIR =
@@ -64,7 +65,7 @@ TARNAME = $(PRONAME)_v$(VERSION)_`date +%Y``date +%m``date +%d``date +%H``date +
 
 all: $(PROGRAM)
 
-$(PROGRAM): $(OBJ)   
+$(PROGRAM): $(OBJ)
 	$(CC) $(W) $(DEBUG) $(OBJ) -o $@
 
 %.o: %.c
@@ -84,7 +85,7 @@ clean:
 #### 安装程序
 ####---------------------------------------------------------
 
-install: 
+install:
 	cp $(PROGRAM) $(BINDIR)
 
 

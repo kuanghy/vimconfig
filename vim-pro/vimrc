@@ -237,9 +237,12 @@ else
         \ strftime('%Y-%m-%d %T', localtime())
 endif
 
+autocmd bufnewfile Makefile so ~/.vim/skeleton/Makefile
+autocmd bufnewfile Makefile exe "1," . 10 . "g/Date:.*$/s//Date:    " .
+        \ strftime('%Y\/%m\/%d', localtime())
+
 autocmd BufNewFile *.java  0r  ~/.vim/skeleton/skeleton.java
 autocmd BufNewFile *.html  0r  ~/.vim/skeleton/skeleton.html
-autocmd BufNewFile Makefile  0r  ~/.vim/skeleton/Makefile
 "------------------------------------------------ end ---------------------
 
 
