@@ -237,6 +237,14 @@ else
         \ strftime('%Y-%m-%d %T', localtime())
 endif
 
+if filereadable(expand("~/.vim/skeleton/skeleton.local.go"))
+    autocmd BufNewFile *.go  0r  ~/.vim/skeleton/skeleton.local.go
+else
+    autocmd bufnewfile *.go so ~/.vim/skeleton/skeleton.go
+    autocmd bufnewfile *.go exe "1," . 10 . "g/CreateTime:/s//CreateTime: " .
+        \ strftime('%Y-%m-%d %T', localtime())
+endif
+
 autocmd bufnewfile Makefile so ~/.vim/skeleton/Makefile
 autocmd bufnewfile Makefile exe "1," . 10 . "g/Date:.*$/s//Date:    " .
         \ strftime('%Y\/%m\/%d', localtime())
